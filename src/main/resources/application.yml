@@ -5,10 +5,9 @@ spring:
     name: user-microservice
   datasource:
     name: datasource
-    url: jdbc:mysql://115.159.31.229:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
-    #url: jdbc:mysql://172.17.0.13:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
-    password: CloudBase123!@#
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       filters: stat
@@ -23,10 +22,9 @@ spring:
       max-open-prepared-statements: 20
   redis:
     database: 0
-    #host: 115.159.31.229
-    host: 172.17.0.13
+    host: localhost
     port: 6379
-    password: CloudBase123!@#
+    password: 123456
     pool:
       max-active: 8
       max-wait: -1
@@ -36,8 +34,6 @@ spring:
 eureka:
   client:
     service-url:
-      #defaultZone : http://115.159.31.229:8000/eureka
-      #defaultZone : http://172.17.0.13:8000/eureka
       defaultZone : http://localhost:8000/eureka
 mybatis:
   mapper-locations: classpath:mapper/*.xml
