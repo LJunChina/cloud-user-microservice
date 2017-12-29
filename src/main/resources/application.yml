@@ -2,11 +2,11 @@ server:
   port: 8010
 spring:
   application:
-    name: user-micriservice
+    name: user-microservice
   datasource:
     name: datasource
-    #url: jdbc:mysql://115.159.31.229:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://172.17.0.13:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://115.159.31.229:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    #url: jdbc:mysql://172.17.0.13:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
     password: CloudBase123!@#
     type: com.alibaba.druid.pool.DruidDataSource
@@ -37,7 +37,8 @@ eureka:
   client:
     service-url:
       #defaultZone : http://115.159.31.229:8000/eureka
-      defaultZone : http://172.17.0.13:8000/eureka
+      #defaultZone : http://172.17.0.13:8000/eureka
+      defaultZone : http://localhost:8000/eureka
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis-config.xml
