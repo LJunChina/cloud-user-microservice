@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.microservice.dao.IAuthorityRuleDao">
+    <resultMap id="BaseResultMap" type="com.cloud.user.microservice.model.AuthorityRule">
+        <id column="ID" jdbcType="BIGINT" property="id" />
+        <result column="AUTH_ID" jdbcType="VARCHAR" property="authId" />
+        <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    </resultMap>
+    <sql id="Base_Column_List">
+       ID,AUTH_ID,ROLE_ID
+    </sql>
+</mapper>

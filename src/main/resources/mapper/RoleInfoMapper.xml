@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.microservice.dao.IRoleInfoDao">
+    <resultMap id="BaseResultMap" type="com.cloud.user.microservice.model.RoleInfo">
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,ROLE_NAME
+    </sql>
+    <insert id="addRoleInfo" parameterType="com.cloud.user.microservice.model.RoleInfo">
+        INSERT INTO role_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            <if test="roleName != null and roleName != ''">
+                ROLE_NAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
+            <if test="roleName != null and roleName != ''">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

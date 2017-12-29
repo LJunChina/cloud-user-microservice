@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.microservice.dao.IAuthorityDao">
+    <resultMap id="BaseResultMap" type="com.cloud.user.microservice.model.Authority">
+        <id column="ID" jdbcType="BIGINT" property="Id" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+        <result column="SORT_NUMBER" jdbcType="INTEGER" property="sortNum" />
+        <result column="STYLE" jdbcType="VARCHAR" property="style" />
+        <result column="ICON" jdbcType="VARCHAR" property="icon" />
+        <result column="AVAILABLE" jdbcType="VARCHAR" property="available" />
+        <result column="APP_NAME" jdbcType="VARCHAR" property="appName"/>
+        <result column="DEEP" jdbcType="NUMERIC" property="deep"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,NAME,PARENT_ID,SORT_NUMBER,STYLE,ICON,AVAILABLE,APP_NAME,DEEP
+    </sql>
+    <insert id="addAuthority" parameterType="com.cloud.user.microservice.dto.AuthorityReqDTO">
+        INSERT INTO authority
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="parentId != null">
+                PARENT_ID,
+            </if>
+            <if test="sortNum != null">
+                SORT_NUMBER,
+            </if>
+            <if test="style != null">
+                STYLE,
+            </if>
+            <if test="icon != null">
+                ICON,
+            </if>
+            <if test="available != null">
+                AVAILABLE,
+            </if>
+            <if test="appName != null">
+                APP_NAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNum != null">
+                #{sortNum,jdbcType=INTEGER},
+            </if>
+            <if test="style != null">
+                #{style,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="available != null">
+                #{available,jdbcType=VARCHAR},
+            </if>
+            <if test="appName != null">
+                #{appName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getAllAuthorities" resultMap="BaseResultMap" parameterType="com.cloud.user.microservice.dto.AuthorityReqDTO">
+        SELECT <include refid="Base_Column_List"/>
+        FROM authority
+        WHERE 1=1
+        <if test="appName != null">
+            AND APP_NAME = #{appName,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>
