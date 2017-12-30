@@ -11,9 +11,11 @@
         <result column="AVAILABLE" jdbcType="VARCHAR" property="available" />
         <result column="APP_NAME" jdbcType="VARCHAR" property="appName"/>
         <result column="DEEP" jdbcType="NUMERIC" property="deep"/>
+        <result column="ITEM_TYPE" jdbcType="VARCHAR" property="itemType"/>
+        <result column="ITEM_URI" jdbcType="VARCHAR" property="itemUri"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ID,NAME,PARENT_ID,SORT_NUMBER,STYLE,ICON,AVAILABLE,APP_NAME,DEEP
+        ID,NAME,PARENT_ID,SORT_NUMBER,STYLE,ICON,AVAILABLE,APP_NAME,DEEP,ITEM_TYPE,ITEM_URI
     </sql>
     <insert id="addAuthority" parameterType="com.cloud.user.microservice.dto.AuthorityReqDTO">
         INSERT INTO authority
@@ -71,8 +73,11 @@
         SELECT <include refid="Base_Column_List"/>
         FROM authority
         WHERE 1=1
-        <if test="appName != null">
+        <if test="appName != null and appName != ''">
             AND APP_NAME = #{appName,jdbcType=VARCHAR}
+        </if>
+        <if test="itemType != null and itemType != ''">
+            AND ITEM_TYPE = #{itemType,jdbcType=VARCHAR}
         </if>
     </select>
 </mapper>

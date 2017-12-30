@@ -23,4 +23,11 @@ public interface AuthorityService {
      * @return
      */
     MenuRespDTO getAllMenus(String appName);
+
+    /**
+     * 系统权限信息分页查询
+     * @param request
+     * @return
+     */
+    BaseRespDTO getAllAuthoritiesByPage(AuthorityReqDTO request);
 }

@@ -28,6 +28,36 @@ public class AuthorityReqDTO implements Serializable {
 
     private String appName;
 
+    private Integer pageSize;
+
+    private Integer pageIndex;
+
+    private String itemType;
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
     public void setAppName(String appName) {
         this.appName = appName;
     }

@@ -9,6 +9,8 @@ import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.model.vo.AuthorityVO;
 import com.cloud.user.microservice.service.AuthorityService;
 import com.cloud.user.microservice.utils.EmptyChecker;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,20 @@ public class AuthorityServiceImpl implements AuthorityService {
             }
         });
         respDTO.setResultData(resultData);
+    }
+
+    /**
+     * 系统权限信息分页查询
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public BaseRespDTO getAllAuthoritiesByPage(AuthorityReqDTO request) {
+        PageInfo<Authority> result = PageHelper.startPage(request.getPageIndex()
+                ,request.getPageSize()).doSelectPageInfo(() -> this.authorityDao.getAllAuthorities(request));
+        BaseRespDTO respDTO = new BaseRespDTO();
+        respDTO.setData(result);
+        return respDTO;
     }
 }

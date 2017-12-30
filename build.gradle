@@ -4,7 +4,7 @@ buildscript {
 	}
 	repositories {
         maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            url 'http://localhost:8080/nexus/content/groups/public/'
         }
 	}
 	dependencies {
@@ -22,7 +22,7 @@ sourceCompatibility = 1.8
 
 repositories {
     maven {
-        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        url 'http://localhost:8080/nexus/content/groups/public/'
     }
 }
 
@@ -40,6 +40,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE')
 	compile('commons-codec:commons-codec:1.9')
     compile('com.alibaba:fastjson:1.2.40')
+	compile('com.cloud:common:1.0-SNAPSHOT')
 	compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
