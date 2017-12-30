@@ -52,6 +52,26 @@ public class Authority implements Serializable {
 
     private Integer deep;
 
+    private String itemType;
+
+    private String itemUri;
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public String getItemUri() {
+        return itemUri;
+    }
+
+    public void setItemUri(String itemUri) {
+        this.itemUri = itemUri;
+    }
+
     public Integer getDeep() {
         return deep;
     }
