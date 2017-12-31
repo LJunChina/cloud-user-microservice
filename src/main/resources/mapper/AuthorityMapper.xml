@@ -48,6 +48,9 @@
             <if test="itemUri != null">
                 ITEM_URI,
             </if>
+            <if test="deep != null">
+                DEEP,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id,jdbcType=VARCHAR},
@@ -77,6 +80,9 @@
             </if>
             <if test="itemUri != null">
                 #{itemUri,jdbcType=VARCHAR},
+            </if>
+            <if test="deep != null">
+                1,
             </if>
         </trim>
     </insert>

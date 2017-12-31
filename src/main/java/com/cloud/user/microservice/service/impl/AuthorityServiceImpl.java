@@ -33,6 +33,9 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public BaseRespDTO saveAuthority(AuthorityReqDTO request) {
         request.setId(UUID.randomUUID().toString());
+        if(EmptyChecker.notEmpty(request.getParentId())){
+            request.setDeep(1);
+        }
         int row = this.authorityDao.addAuthority(request);
         if(1 == row){
             return new BaseRespDTO();

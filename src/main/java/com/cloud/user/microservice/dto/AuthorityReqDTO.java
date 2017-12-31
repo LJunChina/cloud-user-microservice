@@ -36,6 +36,16 @@ public class AuthorityReqDTO implements Serializable {
 
     private String itemUri;
 
+    private Integer deep;
+
+    public Integer getDeep() {
+        return deep;
+    }
+
+    public void setDeep(Integer deep) {
+        this.deep = deep;
+    }
+
     public String getItemUri() {
         return itemUri;
     }
