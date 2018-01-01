@@ -4,9 +4,21 @@
     <resultMap id="BaseResultMap" type="com.cloud.user.microservice.model.RoleInfo">
         <id column="ID" jdbcType="VARCHAR" property="id" />
         <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+        <result column="APP_ID" jdbcType="VARCHAR" property="appId"/>
+        <result column="ROLE_TYPE" jdbcType="VARCHAR" property="roleType"/>
+        <result column="ROLE_DESCRIBE" jdbcType="VARCHAR" property="describe"/>
+    </resultMap>
+
+    <resultMap id="PageResultMap" type="com.cloud.user.microservice.model.vo.RolePageVO">
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+        <result column="SYSTEM_NAME" jdbcType="VARCHAR" property="appName"/>
+        <result column="ROLE_TYPE" jdbcType="VARCHAR" property="roleType"/>
+        <result column="ROLE_DESCRIBE" jdbcType="VARCHAR" property="describe"/>
+        <result column="SYSTEM_CHN" jdbcType="VARCHAR" property="appChn"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ID,ROLE_NAME
+        ID,ROLE_NAME,APP_ID,ROLE_TYPE,ROLE_DESCRIBE
     </sql>
     <insert id="addRoleInfo" parameterType="com.cloud.user.microservice.model.RoleInfo">
         INSERT INTO role_info
@@ -15,12 +27,44 @@
             <if test="roleName != null and roleName != ''">
                 ROLE_NAME,
             </if>
+            <if test="appId != null and appId != ''">
+                APP_ID,
+            </if>
+            <if test="roleType != null and roleType != ''">
+                ROLE_TYPE,
+            </if>
+            <if test="describe != null and describe != ''">
+                ROLE_DESCRIBE,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id,jdbcType=VARCHAR},
             <if test="roleName != null and roleName != ''">
                 #{roleName,jdbcType=VARCHAR},
             </if>
+            <if test="appId != null and appId != ''">
+                #{appId,jdbcType=VARCHAR},
+            </if>
+            <if test="roleType != null and roleType != ''">
+                #{roleType,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null and describe != ''">
+                #{describe,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
+
+    <select id="getAllRoleInfo" parameterType="com.cloud.user.microservice.dto.RolePageReqDTO" resultMap="PageResultMap">
+        SELECT R.ID,ROLE_NAME,SYSTEM_CHN,ROLE_TYPE,ROLE_DESCRIBE,SYSTEM_NAME
+        FROM role_info R
+        LEFT JOIN system_info S ON R.APP_ID = S.ID
+        WHERE 1 = 1
+        <if test="roleName != null and roleName != ''">
+            AND R.ROLE_NAME = #{roleName,jdbcType=VARCHAR}
+        </if>
+        <if test="appId != null and appId != ''">
+            AND R.APP_ID = #{appId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
 </mapper>

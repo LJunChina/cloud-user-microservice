@@ -36,16 +36,16 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public BaseRespDTO saveAuthority(AuthorityReqDTO request) {
         request.setId(UUID.randomUUID().toString());
+        request.setAvailable(YesOrNoEnum.YES.getCode());
         if(EmptyChecker.notEmpty(request.getParentId())){
             request.setDeep(1);
         }
         //若为操作类型,则设置父级id为root节点的id
-        if(AuthorityItemTypeEnum.OPERATION_TYPE.getCode().equals(request.getItemType())){
+        if(AuthorityItemTypeEnum.OPERATION_TYPE.getCode().equals(request.getItemType()) || EmptyChecker.isEmpty(request.getParentId())){
             AuthorityReqDTO params = new AuthorityReqDTO();
             params.setName("root");
             Authority root = this.authorityDao.getAuthorityInfo(params);
             request.setParentId(root.getId());
-            request.setAvailable(YesOrNoEnum.YES.getCode());
         }
         int row = this.authorityDao.addAuthority(request);
         if(1 == row){

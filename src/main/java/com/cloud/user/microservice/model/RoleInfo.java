@@ -19,6 +19,35 @@ public class RoleInfo implements Serializable {
      */
     private String roleName;
 
+    private String appId;
+
+    private String roleType;
+
+    private String describe;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
 
     public String getId() {
         return id;

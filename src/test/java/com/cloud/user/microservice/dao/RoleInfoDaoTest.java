@@ -1,6 +1,7 @@
 package com.cloud.user.microservice.dao;
 
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
+import com.cloud.user.microservice.dto.RolePageReqDTO;
 import com.cloud.user.microservice.model.RoleInfo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,5 +26,11 @@ public class RoleInfoDaoTest extends UserMicroserviceApplicationTests {
         roleInfo.setId(UUID.randomUUID().toString());
         roleInfo.setRoleName("项目经理");
         Assert.assertEquals(1,this.roleInfoDao.addRoleInfo(roleInfo));
+    }
+
+    @Test
+    public void testGetAllRoleInfo(){
+        RolePageReqDTO request = new RolePageReqDTO();
+        Assert.assertNotNull(this.roleInfoDao.getAllRoleInfo(request));
     }
 }

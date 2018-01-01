@@ -2,9 +2,13 @@ package com.cloud.user.microservice.service.impl;
 
 import com.cloud.user.microservice.dao.IRoleInfoDao;
 import com.cloud.user.microservice.dto.BaseRespDTO;
+import com.cloud.user.microservice.dto.RolePageReqDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.model.RoleInfo;
+import com.cloud.user.microservice.model.vo.RolePageVO;
 import com.cloud.user.microservice.service.RoleInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,18 +25,39 @@ public class RoleInfoServiceImpl implements RoleInfoService {
     private IRoleInfoDao roleInfoDao;
     /**
      * 添加角色信息
-     *@param roleName
+     * @param roleName
+     * @param roleType
+     * @param appId
+     * @param describe
      * @return
      */
     @Override
-    public BaseRespDTO saveRoleInfo(String roleName) {
+    public BaseRespDTO saveRoleInfo(String roleName,String roleType,String appId,String describe) {
         RoleInfo roleInfo = new RoleInfo();
         roleInfo.setId(UUID.randomUUID().toString());
         roleInfo.setRoleName(roleName);
+        roleInfo.setDescribe(describe);
+        roleInfo.setAppId(appId);
+        roleInfo.setRoleType(roleType);
         int row = this.roleInfoDao.addRoleInfo(roleInfo);
         if(1 == row){
             return new BaseRespDTO();
         }
         return new BaseRespDTO(ResultCode.FAIL);
+    }
+
+    /**
+     * 角色信息分页查询
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public BaseRespDTO getAllRoleInfo(RolePageReqDTO request) {
+        PageInfo<RolePageVO> result = PageHelper.startPage(request.getPageIndex(),request.getPageSize())
+                .doSelectPageInfo(() -> this.roleInfoDao.getAllRoleInfo(request));
+        BaseRespDTO respDTO = new BaseRespDTO();
+        respDTO.setData(result);
+        return respDTO;
     }
 }
