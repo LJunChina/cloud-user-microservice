@@ -11,16 +11,16 @@ import com.cloud.user.microservice.model.User;
 public class UserVO extends User {
     private static final long serialVersionUID = -2581494209891247630L;
 
-    private int pageNum;
+    private int pageIndex;
 
     private int pageSize;
 
-    public int getPageNum() {
-        return pageNum;
+    public int getPageIndex() {
+        return pageIndex;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
     public int getPageSize() {

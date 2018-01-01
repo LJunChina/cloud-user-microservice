@@ -7,6 +7,7 @@ import com.cloud.user.microservice.dto.UserSearchRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.model.TokenInfo;
 import com.cloud.user.microservice.model.User;
+import com.cloud.user.microservice.model.vo.UserPageVO;
 import com.cloud.user.microservice.service.TokenService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BaseRespDTO getUserList(UserSearchRespDTO request) {
-        PageInfo<User> userPage = PageHelper.startPage(request.getPageNum(),request.getPageSize())
+        PageInfo<UserPageVO> userPage = PageHelper.startPage(request.getPageIndex(),request.getPageSize())
                 .doSelectPageInfo(() -> this.userDao.getUserListByPage(request));
         BaseRespDTO respDTO = new BaseRespDTO();
         respDTO.setData(userPage);

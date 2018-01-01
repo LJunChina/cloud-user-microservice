@@ -1,6 +1,8 @@
 package com.cloud.user.microservice.dao;
 
+import com.cloud.user.microservice.dto.UserSearchRespDTO;
 import com.cloud.user.microservice.model.User;
+import com.cloud.user.microservice.model.vo.UserPageVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public interface IUserDao {
 
     /**
      * 分页查询用户信息
-     * @param user
+     * @param request
      * @return
      */
-    List<User> getUserListByPage(User user);
+    List<UserPageVO> getUserListByPage(UserSearchRespDTO request);
 }
