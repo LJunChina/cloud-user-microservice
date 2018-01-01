@@ -47,4 +47,11 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
         reqDTO.setAppName("基础信息管理平台");
         Assert.assertNotNull(this.authorityDao.getAllAuthorityInfo(reqDTO));
     }
+
+    @Test
+    public void testGetAuthorityInfo(){
+        AuthorityReqDTO reqDTO = new AuthorityReqDTO();
+        reqDTO.setName("root");
+        Assert.assertNotNull(this.authorityDao.getAuthorityInfo(reqDTO));
+    }
 }

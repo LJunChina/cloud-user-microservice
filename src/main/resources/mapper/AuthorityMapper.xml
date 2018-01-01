@@ -125,4 +125,16 @@
             AND A.ITEM_TYPE = #{itemType,jdbcType=VARCHAR}
         </if>
     </select>
+    <select id="getAuthorityInfo" resultMap="BaseResultMap" parameterType="com.cloud.user.microservice.dto.AuthorityReqDTO">
+        SELECT <include refid="Base_Column_List"/> FROM authority WHERE 1 = 1
+        <if test="name != null and name != ''">
+            AND NAME = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="id != null and id != ''">
+            AND ID = #{id,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null and parentId != ''">
+            AND PARENT_ID = #{parentId,jdbcType=VARCHAR}
+        </if>
+    </select>
 </mapper>

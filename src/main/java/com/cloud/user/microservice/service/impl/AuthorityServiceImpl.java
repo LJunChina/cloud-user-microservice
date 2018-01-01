@@ -4,7 +4,9 @@ import com.cloud.user.microservice.dao.IAuthorityDao;
 import com.cloud.user.microservice.dto.AuthorityReqDTO;
 import com.cloud.user.microservice.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.MenuRespDTO;
+import com.cloud.user.microservice.enums.AuthorityItemTypeEnum;
 import com.cloud.user.microservice.enums.ResultCode;
+import com.cloud.user.microservice.enums.YesOrNoEnum;
 import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.model.vo.AuthoritiesVO;
 import com.cloud.user.microservice.model.vo.AuthorityVO;
@@ -37,6 +39,14 @@ public class AuthorityServiceImpl implements AuthorityService {
         if(EmptyChecker.notEmpty(request.getParentId())){
             request.setDeep(1);
         }
+        //若为操作类型,则设置父级id为root节点的id
+        if(AuthorityItemTypeEnum.OPERATION_TYPE.getCode().equals(request.getItemType())){
+            AuthorityReqDTO params = new AuthorityReqDTO();
+            params.setName("root");
+            Authority root = this.authorityDao.getAuthorityInfo(params);
+            request.setParentId(root.getId());
+            request.setAvailable(YesOrNoEnum.YES.getCode());
+        }
         int row = this.authorityDao.addAuthority(request);
         if(1 == row){
             return new BaseRespDTO();
@@ -54,6 +64,7 @@ public class AuthorityServiceImpl implements AuthorityService {
     public MenuRespDTO getAllMenus(String appName) {
         AuthorityReqDTO reqDTO = new AuthorityReqDTO();
         reqDTO.setAppName(appName);
+        reqDTO.setItemType(AuthorityItemTypeEnum.MENU_TYPE.getCode());
         MenuRespDTO baseRespDTO = new MenuRespDTO();
         buildMenus(baseRespDTO,this.authorityDao.getAllAuthorities(reqDTO));
         return baseRespDTO;

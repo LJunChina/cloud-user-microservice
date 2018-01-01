@@ -29,4 +29,10 @@ public interface IAuthorityDao {
      * @return
      */
     List<AuthoritiesVO> getAllAuthorityInfo(AuthorityReqDTO request);
+
+    /**
+     * 根据条件查询权限详情
+     * @return
+     */
+    Authority getAuthorityInfo(AuthorityReqDTO request);
 }
