@@ -6,6 +6,7 @@ import com.cloud.user.microservice.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.MenuRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.model.Authority;
+import com.cloud.user.microservice.model.vo.AuthoritiesVO;
 import com.cloud.user.microservice.model.vo.AuthorityVO;
 import com.cloud.user.microservice.service.AuthorityService;
 import com.cloud.user.microservice.utils.EmptyChecker;
@@ -91,8 +92,8 @@ public class AuthorityServiceImpl implements AuthorityService {
      */
     @Override
     public BaseRespDTO getAllAuthoritiesByPage(AuthorityReqDTO request) {
-        PageInfo<Authority> result = PageHelper.startPage(request.getPageIndex()
-                ,request.getPageSize()).doSelectPageInfo(() -> this.authorityDao.getAllAuthorities(request));
+        PageInfo<AuthoritiesVO> result = PageHelper.startPage(request.getPageIndex()
+                ,request.getPageSize()).doSelectPageInfo(() -> this.authorityDao.getAllAuthorityInfo(request));
         BaseRespDTO respDTO = new BaseRespDTO();
         respDTO.setData(result);
         return respDTO;
