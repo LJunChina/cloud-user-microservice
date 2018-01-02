@@ -5,6 +5,7 @@ import com.cloud.user.microservice.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.UserDetailRespDTO;
 import com.cloud.user.microservice.dto.UserSearchRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
+import com.cloud.user.microservice.enums.YesOrNoEnum;
 import com.cloud.user.microservice.model.TokenInfo;
 import com.cloud.user.microservice.model.User;
 import com.cloud.user.microservice.model.vo.UserPageVO;
@@ -29,6 +30,8 @@ import java.security.interfaces.RSAPrivateKey;
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    private static final String INI_PASSWORD = "123456";
 
     @Autowired
     private TokenService tokenService;
@@ -105,5 +108,27 @@ public class UserServiceImpl implements UserService {
         params.setId(userId);
         userDetailRespDTO.setData(this.userDao.getUserInfo(params));
         return userDetailRespDTO;
+    }
+
+    /**
+     * 保存用户信息
+     *
+     * @param user
+     * @return
+     */
+    @Override
+    public BaseRespDTO saveUserInfo(User user) {
+        //必填字段检测
+        if(EmptyChecker.isEmpty(user.getUserName())){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
+        }
+        //初始化密码、状态信息
+        user.setIsAdmin(YesOrNoEnum.NO.getCode());
+        user.setPassword(DigestUtils.sha256Hex(INI_PASSWORD + user.getUserName()));
+        int row = this.userDao.saveUser(user);
+        if(row > 0){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
     }
 }

@@ -3,6 +3,7 @@ package com.cloud.user.microservice.service;
 import com.cloud.user.microservice.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.UserDetailRespDTO;
 import com.cloud.user.microservice.dto.UserSearchRespDTO;
+import com.cloud.user.microservice.model.User;
 
 public interface UserService {
     /**
@@ -34,4 +35,11 @@ public interface UserService {
      * @return
      */
     UserDetailRespDTO getUserInfo(String userId);
+
+    /**
+     * 保存用户信息
+     * @param user
+     * @return
+     */
+    BaseRespDTO saveUserInfo(User user);
 }

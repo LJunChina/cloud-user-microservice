@@ -1,10 +1,12 @@
 package com.cloud.user.microservice.web;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.user.microservice.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.UserDetailRespDTO;
 import com.cloud.user.microservice.dto.UserSearchRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
+import com.cloud.user.microservice.model.User;
 import com.cloud.user.microservice.service.TokenService;
 import com.cloud.user.microservice.service.UserService;
 import com.cloud.user.microservice.utils.EmptyChecker;
@@ -88,6 +90,26 @@ public class UserController {
             return result.toString();
         }catch (Exception e){
             logger.error("exception occurred in getUserDetail",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 保存内部用户信息
+     * @param body
+     * @return
+     */
+    @PostMapping("/save-user")
+    public String saveUserInfo(@RequestBody String body){
+        logger.info("the params of saveUserInfo is :{}",body);
+        try {
+            User user = JSON.parseObject(body,User.class);
+            BaseRespDTO baseRespDTO = this.userService.saveUserInfo(user);
+            String result = baseRespDTO.toString();
+            logger.info("this result of saveUserInfo is : {}" ,result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in saveUserInfo :",e);
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }

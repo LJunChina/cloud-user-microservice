@@ -24,7 +24,7 @@ public class UserServiceTest extends UserMicroserviceApplicationTests {
     @Test
     public void testGetUserList(){
         UserSearchRespDTO userVO = new UserSearchRespDTO();
-        userVO.setPageNum(1);
+        userVO.setPageIndex(1);
         userVO.setPageSize(10);
         Assert.assertNotNull(this.userService.getUserList(userVO).getData());
     }
