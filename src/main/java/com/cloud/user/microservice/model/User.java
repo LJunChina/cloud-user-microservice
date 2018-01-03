@@ -76,6 +76,16 @@ public class User implements Serializable {
      */
     private String loginToken;
 
+    private String appId;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public String getId() {
         return id;
     }

@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.interfaces.RSAPrivateKey;
+import java.util.UUID;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
@@ -56,7 +57,6 @@ public class UserServiceImpl implements UserService {
         if(EmptyChecker.isEmpty(passwordByte)){
             return new BaseRespDTO(ResultCode.FAIL);
         }
-        String realPassword = DigestUtils.sha256Hex(new String(passwordByte));
         //查询用户信息
         User param = new User();
         param.setUserName(userName);
@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
         if(EmptyChecker.isEmpty(currentUser)){
             return new BaseRespDTO(ResultCode.USER_NAME_OR_PASSWORD_ERROR);
         }
+        String realPassword = DigestUtils.sha256Hex(new String(passwordByte) + currentUser.getUserName());
         //加密
         String originPassword = currentUser.getPassword();
         //密码比对
@@ -124,6 +125,7 @@ public class UserServiceImpl implements UserService {
         }
         //初始化密码、状态信息
         user.setIsAdmin(YesOrNoEnum.NO.getCode());
+        user.setId(UUID.randomUUID().toString());
         user.setPassword(DigestUtils.sha256Hex(INI_PASSWORD + user.getUserName()));
         int row = this.userDao.saveUser(user);
         if(row > 0){

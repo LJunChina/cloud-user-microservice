@@ -61,13 +61,13 @@
             <if test="status != null">
                 STATUS,
             </if>
-            <if test="orgid != null">
+            <if test="orgId != null">
                 ORG_ID,
             </if>
             <if test="email != null">
                 EMAIL,
             </if>
-            <if test="idcard != null">
+            <if test="idCard != null">
                 ID_CARD,
             </if>
             <if test="isAdmin != null">
@@ -75,6 +75,9 @@
             </if>
             <if test="mobile != null">
                 MOBILE,
+            </if>
+            <if test="appId != null">
+                APP_ID,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -101,13 +104,16 @@
                 #{email,jdbcType=VARCHAR},
             </if>
             <if test="idCard != null">
-                #{idcard,jdbcType=VARCHAR},
+                #{idCard,jdbcType=VARCHAR},
             </if>
             <if test="isAdmin != null">
                 #{isAdmin,jdbcType=VARCHAR},
             </if>
             <if test="mobile != null">
                 #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="appId != null">
+                #{appId,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -123,7 +129,8 @@
         ID_CARD = #{idCard,jdbcType=VARCHAR},
         IS_ADMIN = #{isAdmin,jdbcType=VARCHAR},
         MOBILE = #{mobile,jdbcType=VARCHAR},
-        LOGIN_TOKEN = #{loginToken,jdbcType=VARCHAR}
+        LOGIN_TOKEN = #{loginToken,jdbcType=VARCHAR},
+        APP_ID = #{appId,jdbcType=VARCHAR}
         WHERE id = #{id,jdbcType=VARCHAR}
     </update>
     <select id="getUserListByPage" parameterType="com.cloud.user.microservice.dto.UserSearchRespDTO" resultMap="PageResultMap">
