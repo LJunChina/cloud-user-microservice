@@ -20,7 +20,7 @@ public class RoleInfoServiceTest extends UserMicroserviceApplicationTests {
 
     @Test
     public void testSaveRoleInfo(){
-        BaseRespDTO baseRespDTO = this.roleInfoService.saveRoleInfo("产品经理");
+        BaseRespDTO baseRespDTO = this.roleInfoService.saveRoleInfo("产品经理","432","54235","gfdgdf");
         Assert.assertEquals(ResultCode.OK.getCode(),baseRespDTO.getCode());
     }
 }
