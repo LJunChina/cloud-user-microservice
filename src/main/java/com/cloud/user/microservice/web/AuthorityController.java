@@ -1,9 +1,9 @@
 package com.cloud.user.microservice.web;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.user.microservice.dto.AuthorityReqDTO;
-import com.cloud.user.microservice.dto.BaseRespDTO;
-import com.cloud.user.microservice.dto.MenuRespDTO;
+import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.service.AuthorityService;
 import com.cloud.user.microservice.utils.EmptyChecker;

@@ -1,4 +1,4 @@
-package com.cloud.user.microservice.dto;
+package com.cloud.user.microservice.dto.responseDTO;
 
 
 import com.cloud.user.microservice.model.Authority;

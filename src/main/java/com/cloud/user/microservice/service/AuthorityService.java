@@ -1,8 +1,8 @@
 package com.cloud.user.microservice.service;
 
-import com.cloud.user.microservice.dto.AuthorityReqDTO;
-import com.cloud.user.microservice.dto.BaseRespDTO;
-import com.cloud.user.microservice.dto.MenuRespDTO;
+import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
 
 /**
  * Authority

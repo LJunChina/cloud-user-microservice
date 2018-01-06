@@ -1,4 +1,4 @@
-package com.cloud.user.microservice.dto;
+package com.cloud.user.microservice.dto.requestDTO;
 
 import java.io.Serializable;
 

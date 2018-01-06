@@ -133,7 +133,7 @@
         APP_ID = #{appId,jdbcType=VARCHAR}
         WHERE id = #{id,jdbcType=VARCHAR}
     </update>
-    <select id="getUserListByPage" parameterType="com.cloud.user.microservice.dto.UserSearchRespDTO" resultMap="PageResultMap">
+    <select id="getUserListByPage" parameterType="com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO" resultMap="PageResultMap">
         SELECT U.ID,USER_NAME,NAME,SEX,STATUS,EMAIL,ID_CARD,MOBILE,SYSTEM_CHN,SYSTEM_NAME FROM user_info U
         LEFT JOIN system_info S ON U.APP_ID = S.ID
         <if test="userName != null and userName != ''">

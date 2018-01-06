@@ -54,7 +54,7 @@
         </trim>
     </insert>
 
-    <select id="getAllRoleInfo" parameterType="com.cloud.user.microservice.dto.RolePageReqDTO" resultMap="PageResultMap">
+    <select id="getAllRoleInfo" parameterType="com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO" resultMap="PageResultMap">
         SELECT R.ID,ROLE_NAME,SYSTEM_CHN,ROLE_TYPE,ROLE_DESCRIBE,SYSTEM_NAME
         FROM role_info R
         LEFT JOIN system_info S ON R.APP_ID = S.ID
@@ -67,4 +67,10 @@
         </if>
     </select>
 
+    <insert id="allocationUsers" parameterType="java.util.Map">
+        INSERT INTO user_role
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR}
+        </foreach>
+    </insert>
 </mapper>

@@ -1,7 +1,7 @@
 package com.cloud.user.microservice.service.impl;
 
 import com.cloud.user.microservice.dao.ISystemInfoDao;
-import com.cloud.user.microservice.dto.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.model.SystemInfo;
 import com.cloud.user.microservice.service.SystemInfoService;

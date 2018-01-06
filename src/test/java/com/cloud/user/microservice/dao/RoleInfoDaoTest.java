@@ -1,7 +1,7 @@
 package com.cloud.user.microservice.dao;
 
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
-import com.cloud.user.microservice.dto.RolePageReqDTO;
+import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
 import com.cloud.user.microservice.model.RoleInfo;
 import org.junit.Assert;
 import org.junit.Test;

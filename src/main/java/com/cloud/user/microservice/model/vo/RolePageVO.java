@@ -1,7 +1,5 @@
 package com.cloud.user.microservice.model.vo;
 
-import com.cloud.user.microservice.dto.BaseRespDTO;
-
 import java.io.Serializable;
 
 /**

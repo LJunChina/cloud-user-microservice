@@ -1,6 +1,6 @@
 package com.cloud.user.microservice.web;
 
-import com.cloud.user.microservice.dto.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.service.SystemInfoService;
 import org.slf4j.Logger;

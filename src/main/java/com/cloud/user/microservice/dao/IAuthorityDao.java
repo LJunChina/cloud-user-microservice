@@ -1,6 +1,6 @@
 package com.cloud.user.microservice.dao;
 
-import com.cloud.user.microservice.dto.AuthorityReqDTO;
+import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.model.vo.AuthoritiesVO;
 import org.springframework.stereotype.Repository;

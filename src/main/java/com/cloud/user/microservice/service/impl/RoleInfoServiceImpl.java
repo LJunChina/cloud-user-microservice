@@ -1,8 +1,8 @@
 package com.cloud.user.microservice.service.impl;
 
 import com.cloud.user.microservice.dao.IRoleInfoDao;
-import com.cloud.user.microservice.dto.BaseRespDTO;
-import com.cloud.user.microservice.dto.RolePageReqDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.model.RoleInfo;
 import com.cloud.user.microservice.model.vo.RolePageVO;

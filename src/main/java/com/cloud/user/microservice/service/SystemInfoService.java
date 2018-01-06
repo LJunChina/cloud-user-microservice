@@ -1,6 +1,6 @@
 package com.cloud.user.microservice.service;
 
-import com.cloud.user.microservice.dto.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 
 /**
  * 业务系统服务

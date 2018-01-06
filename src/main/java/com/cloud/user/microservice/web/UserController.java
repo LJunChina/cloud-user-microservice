@@ -2,9 +2,9 @@ package com.cloud.user.microservice.web;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.user.microservice.dto.BaseRespDTO;
-import com.cloud.user.microservice.dto.UserDetailRespDTO;
-import com.cloud.user.microservice.dto.UserSearchRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.UserDetailRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.model.User;
 import com.cloud.user.microservice.service.TokenService;

@@ -1,9 +1,9 @@
 package com.cloud.user.microservice.service.impl;
 
 import com.cloud.user.microservice.dao.IAuthorityDao;
-import com.cloud.user.microservice.dto.AuthorityReqDTO;
-import com.cloud.user.microservice.dto.BaseRespDTO;
-import com.cloud.user.microservice.dto.MenuRespDTO;
+import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
+import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
 import com.cloud.user.microservice.enums.AuthorityItemTypeEnum;
 import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.enums.YesOrNoEnum;

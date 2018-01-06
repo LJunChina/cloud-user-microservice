@@ -1,6 +1,6 @@
 package com.cloud.user.microservice.dao;
 
-import com.cloud.user.microservice.dto.UserSearchRespDTO;
+import com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO;
 import com.cloud.user.microservice.model.User;
 import com.cloud.user.microservice.model.vo.UserPageVO;
 import org.springframework.stereotype.Repository;
