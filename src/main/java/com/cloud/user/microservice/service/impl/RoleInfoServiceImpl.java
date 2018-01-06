@@ -67,20 +67,19 @@ public class RoleInfoServiceImpl implements RoleInfoService {
 
     /**
      * 角色分配用户信息
-     *
-     * @param userIds
-     * @param roleId
+     * @param userId
+     * @param roleIds
      * @return
      */
     @Override
-    public BaseRespDTO allocationUsers(String userIds,String roleId) {
-        if(EmptyChecker.isEmpty(userIds) || EmptyChecker.isEmpty(roleId)){
+    public BaseRespDTO allocationUsers(String userId,String roleIds) {
+        if(EmptyChecker.isEmpty(userId) || EmptyChecker.isEmpty(roleIds)){
             return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
         }
         UserAllocationRequest request = new UserAllocationRequest();
-        List<String> userId = Arrays.asList(userIds.split(","));
-        request.setUserIds(userId);
-        request.setRoleId(roleId);
+        List<String> roleId = Arrays.asList(roleIds.split(","));
+        request.setUserId(userId);
+        request.setRoleIds(roleId);
         int row = this.roleInfoDao.allocationUsers(request);
         if(row >= 1){
             return new BaseRespDTO();

@@ -25,9 +25,9 @@ public interface RoleInfoService {
 
     /**
      * 角色分配用户信息
-     * @param userIds
-     * @param roleId
+     * @param userId
+     * @param roleIds
      * @return
      */
-    BaseRespDTO allocationUsers(String userIds,String roleId);
+    BaseRespDTO allocationUsers(String userId,String roleIds);
 }

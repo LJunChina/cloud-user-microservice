@@ -10,25 +10,26 @@ import java.util.List;
  * @create 2018/1/6
  */
 public class UserAllocationRequest implements Serializable {
+
     private static final long serialVersionUID = 2512034276632758837L;
 
-    private String roleId;
+    private String userId;
 
-    private List<String> userIds;
+    private List<String> roleIds;
 
-    public String getRoleId() {
-        return roleId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public List<String> getUserIds() {
-        return userIds;
+    public List<String> getRoleIds() {
+        return roleIds;
     }
 
-    public void setUserIds(List<String> userIds) {
-        this.userIds = userIds;
+    public void setRoleIds(List<String> roleIds) {
+        this.roleIds = roleIds;
     }
 }

@@ -86,16 +86,16 @@ public class RoleInfoController {
 
     /**
      * 角色分配用户信息
-     * @param roleId
-     * @param userIds
+     * @param userId
+     * @param roleIds
      * @return
      */
     @PostMapping(value = "/allocation-users")
-    public String allocationUsers(@RequestParam(value = "roleId",defaultValue = StringUtils.EMPTY) String roleId,
-                                 @RequestParam(value = "userIds",defaultValue = StringUtils.EMPTY) String userIds){
-        logger.info("the params of allocationUsers,roleId:{},userIds:{}",roleId,userIds);
+    public String allocationUsers(@RequestParam(value = "userId",defaultValue = StringUtils.EMPTY) String userId,
+                                 @RequestParam(value = "roleIds",defaultValue = StringUtils.EMPTY) String roleIds){
+        logger.info("the params of allocationUsers,userId:{},roleIds:{}",userId,roleIds);
         try {
-            BaseRespDTO baseRespDTO = this.roleInfoService.allocationUsers(userIds,roleId);
+            BaseRespDTO baseRespDTO = this.roleInfoService.allocationUsers(userId,roleIds);
             String result = baseRespDTO.toString();
             logger.info("the result of allocationUsers is : {}",result);
             return result;
