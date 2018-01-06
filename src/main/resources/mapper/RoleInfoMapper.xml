@@ -69,8 +69,8 @@
 
     <insert id="allocationUsers" parameterType="com.cloud.user.microservice.dto.requestDTO.UserAllocationRequest">
         INSERT INTO user_role VALUES
-        <foreach collection="userIds" item="item" separator="," open="(" close=")">
-            UUID(),#{item,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR}
+        <foreach collection="userIds" item="item" separator=",">
+            (UUID(),#{item,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR})
         </foreach>
     </insert>
 </mapper>

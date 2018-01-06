@@ -82,4 +82,26 @@ public class RoleInfoController {
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }
+
+
+    /**
+     * 角色分配用户信息
+     * @param roleId
+     * @param userIds
+     * @return
+     */
+    @PostMapping(value = "/allocation-users")
+    public String allocationUsers(@RequestParam(value = "roleId",defaultValue = StringUtils.EMPTY) String roleId,
+                                 @RequestParam(value = "userIds",defaultValue = StringUtils.EMPTY) String userIds){
+        logger.info("the params of allocationUsers,roleId:{},userIds:{}",roleId,userIds);
+        try {
+            BaseRespDTO baseRespDTO = this.roleInfoService.allocationUsers(userIds,roleId);
+            String result = baseRespDTO.toString();
+            logger.info("the result of allocationUsers is : {}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in allocationUsers",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
 }

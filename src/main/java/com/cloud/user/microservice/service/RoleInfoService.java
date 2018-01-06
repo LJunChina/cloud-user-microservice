@@ -3,6 +3,8 @@ package com.cloud.user.microservice.service;
 import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
 
+import java.util.List;
+
 public interface RoleInfoService {
     /**
      * 添加角色信息
@@ -20,4 +22,12 @@ public interface RoleInfoService {
      * @return
      */
     BaseRespDTO getAllRoleInfo(RolePageReqDTO request);
+
+    /**
+     * 角色分配用户信息
+     * @param userIds
+     * @param roleId
+     * @return
+     */
+    BaseRespDTO allocationUsers(String userIds,String roleId);
 }
