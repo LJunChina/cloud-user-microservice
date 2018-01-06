@@ -2,11 +2,14 @@ package com.cloud.user.microservice.dao;
 
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
 import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
+import com.cloud.user.microservice.dto.requestDTO.UserAllocationRequest;
 import com.cloud.user.microservice.model.RoleInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -32,5 +35,15 @@ public class RoleInfoDaoTest extends UserMicroserviceApplicationTests {
     public void testGetAllRoleInfo(){
         RolePageReqDTO request = new RolePageReqDTO();
         Assert.assertNotNull(this.roleInfoDao.getAllRoleInfo(request));
+    }
+
+    @Test
+    public void testAllocationUsers(){
+        UserAllocationRequest request = new UserAllocationRequest();
+        request.setRoleId(UUID.randomUUID().toString());
+        List<String> userIds = new ArrayList<>();
+        userIds.add(UUID.randomUUID().toString());
+        request.setUserIds(userIds);
+        Assert.assertEquals(1,this.roleInfoDao.allocationUsers(request));
     }
 }

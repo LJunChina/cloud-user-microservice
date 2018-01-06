@@ -67,10 +67,10 @@
         </if>
     </select>
 
-    <insert id="allocationUsers" parameterType="java.util.Map">
-        INSERT INTO user_role
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR}
+    <insert id="allocationUsers" parameterType="com.cloud.user.microservice.dto.requestDTO.UserAllocationRequest">
+        INSERT INTO user_role VALUES
+        <foreach collection="userIds" item="item" separator="," open="(" close=")">
+            UUID(),#{item,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR}
         </foreach>
     </insert>
 </mapper>

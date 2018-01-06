@@ -1,6 +1,7 @@
 package com.cloud.user.microservice.dao;
 
 import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
+import com.cloud.user.microservice.dto.requestDTO.UserAllocationRequest;
 import com.cloud.user.microservice.model.RoleInfo;
 import com.cloud.user.microservice.model.vo.RolePageVO;
 import org.springframework.stereotype.Repository;
@@ -25,9 +26,9 @@ public interface IRoleInfoDao {
 
     /**
      * 为角色分配用户
-     * @param ids
+     * @param request
      * @return
      */
-    int allocationUsers(List<String> ids);
+    int allocationUsers(UserAllocationRequest request);
 
 }
