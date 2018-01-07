@@ -1,12 +1,15 @@
 package com.cloud.user.microservice.dao;
 
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
+import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.enums.YesOrNoEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -53,5 +56,15 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
         AuthorityReqDTO reqDTO = new AuthorityReqDTO();
         reqDTO.setName("root");
         Assert.assertNotNull(this.authorityDao.getAuthorityInfo(reqDTO));
+    }
+
+    @Test
+    public void testAllocationAuth(){
+        AllocationAuthRequest request = new AllocationAuthRequest();
+        request.setRoleId(UUID.randomUUID().toString());
+        List<String> authIds = new ArrayList<>();
+        authIds.add(UUID.randomUUID().toString());
+        request.setAuthIds(authIds);
+        Assert.assertEquals(1,this.authorityDao.allocationAuth(request));
     }
 }

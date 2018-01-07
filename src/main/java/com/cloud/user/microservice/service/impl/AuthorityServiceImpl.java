@@ -1,6 +1,7 @@
 package com.cloud.user.microservice.service.impl;
 
 import com.cloud.user.microservice.dao.IAuthorityDao;
+import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -108,5 +110,29 @@ public class AuthorityServiceImpl implements AuthorityService {
         BaseRespDTO respDTO = new BaseRespDTO();
         respDTO.setData(result);
         return respDTO;
+    }
+
+    /**
+     * 角色权限分配
+     *
+     * @param roleId
+     * @param authIds
+     * @return
+     */
+    @Override
+    public BaseRespDTO allocationAuth(String roleId, String authIds) {
+        if(EmptyChecker.isEmpty(roleId) || EmptyChecker.isEmpty(authIds)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
+        }
+        //数据处理
+        List<String> ids = Arrays.asList(authIds.split(","));
+        AllocationAuthRequest request = new AllocationAuthRequest();
+        request.setRoleId(roleId);
+        request.setAuthIds(ids);
+        int row = this.authorityDao.allocationAuth(request);
+        if(row >= 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
     }
 }

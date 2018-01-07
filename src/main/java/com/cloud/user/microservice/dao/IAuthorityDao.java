@@ -1,5 +1,6 @@
 package com.cloud.user.microservice.dao;
 
+import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.model.vo.AuthoritiesVO;
@@ -35,4 +36,11 @@ public interface IAuthorityDao {
      * @return
      */
     Authority getAuthorityInfo(AuthorityReqDTO request);
+
+    /**
+     * 角色权限分配
+     * @param request
+     * @return
+     */
+    int allocationAuth(AllocationAuthRequest request);
 }

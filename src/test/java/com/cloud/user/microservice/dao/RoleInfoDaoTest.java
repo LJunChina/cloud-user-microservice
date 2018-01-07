@@ -40,10 +40,10 @@ public class RoleInfoDaoTest extends UserMicroserviceApplicationTests {
     @Test
     public void testAllocationUsers(){
         UserAllocationRequest request = new UserAllocationRequest();
-        request.setRoleId(UUID.randomUUID().toString());
+        request.setUserId(UUID.randomUUID().toString());
         List<String> userIds = new ArrayList<>();
         userIds.add(UUID.randomUUID().toString());
-        request.setUserIds(userIds);
+        request.setRoleIds(userIds);
         Assert.assertEquals(1,this.roleInfoDao.allocationUsers(request));
     }
 }

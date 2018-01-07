@@ -4,6 +4,7 @@ import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
 
+
 /**
  * Authority
  *
@@ -30,4 +31,12 @@ public interface AuthorityService {
      * @return
      */
     BaseRespDTO getAllAuthoritiesByPage(AuthorityReqDTO request);
+
+    /**
+     * 角色权限分配
+     * @param roleId
+     * @param authIds
+     * @return
+     */
+    BaseRespDTO allocationAuth(String roleId, String authIds);
 }
