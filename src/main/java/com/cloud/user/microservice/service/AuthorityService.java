@@ -21,9 +21,10 @@ public interface AuthorityService {
     /**
      * 获取系统所有菜单信息
      * @param appName 系统名称
+     * @param userId
      * @return
      */
-    MenuRespDTO getAllMenus(String appName);
+    MenuRespDTO getAllMenus(String appName,String userId);
 
     /**
      * 系统权限信息分页查询

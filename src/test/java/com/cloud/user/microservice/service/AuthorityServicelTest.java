@@ -14,7 +14,7 @@ public class AuthorityServicelTest extends UserMicroserviceApplicationTests {
 
     @Test
     public void getAllMenus() throws Exception {
-        MenuRespDTO authorityRespDTO = this.authorityService.getAllMenus("cloud_mall");
+        MenuRespDTO authorityRespDTO = this.authorityService.getAllMenus("cloud_mall","213");
         Assert.assertEquals(ResultCode.OK.getCode(),authorityRespDTO.getCode());
     }
 

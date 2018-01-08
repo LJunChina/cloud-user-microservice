@@ -100,12 +100,17 @@
         SELECT authority.ID,NAME,PARENT_ID,SORT_NUMBER,STYLE,ICON,AVAILABLE,APP_NAME,DEEP,ITEM_TYPE,ITEM_URI
         FROM authority
         LEFT JOIN system_info  ON authority.APP_NAME = system_info.ID
+        LEFT JOIN authority_role ON authority_role.AUTH_ID = authority.ID
         WHERE authority.AVAILABLE = '1'
         <if test="appName != null and appName != ''">
             AND system_info.SYSTEM_NAME = #{appName,jdbcType=VARCHAR}
         </if>
         <if test="itemType != null and itemType != ''">
             AND authority.ITEM_TYPE = #{itemType,jdbcType=VARCHAR}
+        </if>
+        <if test="userId != null and userId != ''">
+            AND authority_role.ROLE_ID IN
+            (SELECT ROLE_ID FROM user_role WHERE USER_ID = #{userId,jdbcType=VARCHAR})
         </if>
     </select>
 

@@ -56,14 +56,14 @@ public class AuthorityController {
      * @param appName
      * @return
      */
-    @GetMapping(value = "/get-all-menus/{appName}")
-    public String getAllMenus(@PathVariable(value = "appName") String appName){
-        logger.info("the params of getAllMenus is : {}",appName);
-        if(EmptyChecker.isEmpty(appName)){
+    @GetMapping(value = "/get-all-menus/{appName}/{userId}")
+    public String getAllMenus(@PathVariable(value = "appName") String appName,@PathVariable(value = "userId") String userId){
+        logger.info("the params of getAllMenus,appName: {},userId: {}",appName,userId);
+        if(EmptyChecker.isEmpty(appName) || EmptyChecker.isEmpty(userId)){
             return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND).toString();
         }
         try {
-            MenuRespDTO respDTO = this.authorityService.getAllMenus(appName);
+            MenuRespDTO respDTO = this.authorityService.getAllMenus(appName,userId);
             String result = respDTO.toString();
             logger.info("result of the getAllMenus is :{}",result);
             return result;

@@ -60,13 +60,18 @@ public class AuthorityServiceImpl implements AuthorityService {
      * 获取系统所有菜单信息
      *
      * @param appName 系统名称
+     * @param userId 当前登录用户id
      * @return
      */
     @Override
-    public MenuRespDTO getAllMenus(String appName) {
+    public MenuRespDTO getAllMenus(String appName,String userId) {
         AuthorityReqDTO reqDTO = new AuthorityReqDTO();
         reqDTO.setAppName(appName);
         reqDTO.setItemType(AuthorityItemTypeEnum.MENU_TYPE.getCode());
+        //查询用户角色信息
+        if(!"874b0e21-dd87-49ee-b0b9-142cc365618c".equals(userId)){
+            reqDTO.setUserId(userId);
+        }
         MenuRespDTO baseRespDTO = new MenuRespDTO();
         buildMenus(baseRespDTO,this.authorityDao.getAllAuthorities(reqDTO));
         return baseRespDTO;

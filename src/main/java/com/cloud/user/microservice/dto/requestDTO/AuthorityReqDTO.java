@@ -38,6 +38,16 @@ public class AuthorityReqDTO implements Serializable {
 
     private Integer deep;
 
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public Integer getDeep() {
         return deep;
     }
