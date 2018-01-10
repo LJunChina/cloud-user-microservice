@@ -67,4 +67,9 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
         request.setAuthIds(authIds);
         Assert.assertEquals(1,this.authorityDao.allocationAuth(request));
     }
+
+    @Test
+    public void testGetUserPrivileges(){
+        Assert.assertNotNull(this.authorityDao.getUserPrivileges("bb659ce6-d158-424e-a1a4-8d7f30d9c09b",null));
+    }
 }

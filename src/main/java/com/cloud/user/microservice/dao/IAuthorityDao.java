@@ -4,6 +4,7 @@ import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.model.vo.AuthoritiesVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -43,4 +44,12 @@ public interface IAuthorityDao {
      * @return
      */
     int allocationAuth(AllocationAuthRequest request);
+
+    /**
+     * 获取用户所有权限信息
+     * @param userId
+     * @param appId
+     * @return
+     */
+    List<Authority> getUserPrivileges(@Param("userId") String userId, @Param("appId")String appId);
 }

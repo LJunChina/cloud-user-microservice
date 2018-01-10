@@ -149,4 +149,12 @@
             (UUID(),#{item,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR})
         </foreach>
     </insert>
+
+    <select id="getUserPrivileges"  resultMap="BaseResultMap">
+        SELECT A.* FROM authority A
+		LEFT JOIN authority_role T ON T.AUTH_ID = A.ID
+        WHERE T.ROLE_ID IN (
+              SELECT R.ROLE_ID FROM user_role R LEFT JOIN user_info U ON U.ID = R.USER_ID
+        WHERE U.ID = #{userId,jdbcType=VARCHAR})
+    </select>
 </mapper>

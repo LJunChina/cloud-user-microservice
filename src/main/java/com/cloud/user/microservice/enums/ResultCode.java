@@ -8,6 +8,7 @@ public enum ResultCode {
     USER_NAME_NOT_ALLOW_EMPTY("9010","用户名称不能为空"),
     PASSWORD_NOT_ALLOW_EMPTY("9011","登录密码不能为空"),
     USER_NAME_OR_PASSWORD_ERROR("9012","用户名或密码错误"),
+    NO_PRIVILEGE("7000","无相关权限"),
     INVALID_USER("9013","非法用户");
 
 

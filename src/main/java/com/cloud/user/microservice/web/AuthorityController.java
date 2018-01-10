@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.GET;
+
 
 /**
  * 权限API
@@ -126,6 +128,29 @@ public class AuthorityController {
             return result;
         }catch (Exception e){
             logger.error("exception occurred in allocationAuth",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 用户权限查询
+     * @param appId 系统id
+     * @param userId 用户id
+     * @param uri 请求uri
+     * @return
+     */
+    @GetMapping(value = "/check-privilege")
+    public String checkUserPrivileges(@RequestParam(value = "appId")String appId,
+                                      @RequestParam(value = "userId")String userId,
+                                      @RequestParam(value = "uri")String uri){
+        logger.info("params of checkUserPrivileges,appId:{},userId:{},uri:{}",appId,userId,uri);
+        try {
+            BaseRespDTO baseRespDTO = this.authorityService.checkUserPrivileges(userId,appId,uri);
+            String result = baseRespDTO.toString();
+            logger.info("result of checkUserPrivileges:{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in checkUserPrivileges",e);
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }

@@ -40,4 +40,13 @@ public interface AuthorityService {
      * @return
      */
     BaseRespDTO allocationAuth(String roleId, String authIds);
+
+    /**
+     * 查询当前登录用户权限
+     * @param userId
+     * @param appId
+     * @param uri
+     * @return
+     */
+    BaseRespDTO checkUserPrivileges(String userId,String appId,String uri);
 }

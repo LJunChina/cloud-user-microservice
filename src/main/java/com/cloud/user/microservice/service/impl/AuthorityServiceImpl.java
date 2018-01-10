@@ -18,6 +18,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -139,5 +140,27 @@ public class AuthorityServiceImpl implements AuthorityService {
             return new BaseRespDTO();
         }
         return new BaseRespDTO(ResultCode.FAIL);
+    }
+
+    /**
+     * 查询当前登录用户权限
+     *
+     * @param userId
+     * @param appId
+     * @param uri
+     * @return
+     */
+    @Override
+    public BaseRespDTO checkUserPrivileges(String userId, String appId,String uri) {
+        List<Authority> list = this.authorityDao.getUserPrivileges(userId,appId);
+        if(EmptyChecker.isEmpty(uri) || EmptyChecker.isEmpty(list)){
+            return new BaseRespDTO(ResultCode.NO_PRIVILEGE);
+        }
+        //权限列表中是否存在该请求uri
+        long resultCount = list.stream().filter(l -> uri.equals(l.getItemUri())).count();
+        if(resultCount == 0L){
+            return new BaseRespDTO(ResultCode.NO_PRIVILEGE);
+        }
+        return new BaseRespDTO();
     }
 }
