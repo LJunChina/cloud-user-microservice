@@ -1,7 +1,7 @@
 package com.cloud.user.microservice.service;
 
+import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO;
 import org.junit.Assert;
 import org.junit.Test;

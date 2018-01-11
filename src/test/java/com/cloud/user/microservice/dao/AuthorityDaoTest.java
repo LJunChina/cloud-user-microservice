@@ -1,9 +1,9 @@
 package com.cloud.user.microservice.dao;
 
+import com.cloud.common.enums.YesOrNoEnum;
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
 import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
-import com.cloud.user.microservice.enums.YesOrNoEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

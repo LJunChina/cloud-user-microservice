@@ -1,7 +1,7 @@
 package com.cloud.user.microservice.service;
 
+import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
 
 

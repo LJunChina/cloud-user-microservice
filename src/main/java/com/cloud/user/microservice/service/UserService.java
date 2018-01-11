@@ -1,6 +1,6 @@
 package com.cloud.user.microservice.service;
 
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.UserDetailRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO;
 import com.cloud.user.microservice.model.User;

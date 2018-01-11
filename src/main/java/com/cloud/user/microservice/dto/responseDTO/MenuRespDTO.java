@@ -1,5 +1,6 @@
 package com.cloud.user.microservice.dto.responseDTO;
 
+import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.user.microservice.model.vo.AuthorityVO;
 
 import java.util.List;

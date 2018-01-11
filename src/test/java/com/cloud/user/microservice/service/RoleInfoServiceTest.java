@@ -1,8 +1,8 @@
 package com.cloud.user.microservice.service;
 
+import com.cloud.common.dto.BaseRespDTO;
+import com.cloud.common.enums.ResultCode;
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
-import com.cloud.user.microservice.enums.ResultCode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

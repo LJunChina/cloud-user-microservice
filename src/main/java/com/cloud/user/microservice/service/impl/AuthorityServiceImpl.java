@@ -1,24 +1,23 @@
 package com.cloud.user.microservice.service.impl;
 
+import com.cloud.common.dto.BaseRespDTO;
+import com.cloud.common.enums.ResultCode;
+import com.cloud.common.enums.YesOrNoEnum;
+import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.dao.IAuthorityDao;
 import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
 import com.cloud.user.microservice.enums.AuthorityItemTypeEnum;
-import com.cloud.user.microservice.enums.ResultCode;
-import com.cloud.user.microservice.enums.YesOrNoEnum;
 import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.model.vo.AuthoritiesVO;
 import com.cloud.user.microservice.model.vo.AuthorityVO;
 import com.cloud.user.microservice.service.AuthorityService;
-import com.cloud.user.microservice.utils.EmptyChecker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

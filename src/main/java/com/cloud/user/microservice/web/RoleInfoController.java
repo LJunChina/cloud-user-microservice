@@ -1,10 +1,10 @@
 package com.cloud.user.microservice.web;
 
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+import com.cloud.common.dto.BaseRespDTO;
+import com.cloud.common.enums.ResultCode;
+import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
-import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.service.RoleInfoService;
-import com.cloud.user.microservice.utils.EmptyChecker;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

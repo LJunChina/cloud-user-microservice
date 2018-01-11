@@ -1,19 +1,18 @@
 package com.cloud.user.microservice.web;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.dto.BaseRespDTO;
+import com.cloud.common.enums.ResultCode;
+import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
-import com.cloud.user.microservice.enums.ResultCode;
 import com.cloud.user.microservice.service.AuthorityService;
-import com.cloud.user.microservice.utils.EmptyChecker;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.GET;
 
 
 /**

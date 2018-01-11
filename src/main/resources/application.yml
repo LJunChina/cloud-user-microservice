@@ -5,9 +5,9 @@ spring:
     name: user-microservice
   datasource:
     name: datasource
-    url: jdbc:mysql://localhost:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://115.159.31.229:3306/cloud_mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
-    password: 123456
+    password: CloudBase123!@#
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       filters: stat
@@ -20,11 +20,12 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-open-prepared-statements: 20
+    driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     database: 0
-    host: localhost
+    host: 115.159.31.229
     port: 6379
-    password: 123456
+    password: CloudBase123!@#
     pool:
       max-active: 8
       max-wait: -1

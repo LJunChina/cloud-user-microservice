@@ -1,6 +1,7 @@
 package com.cloud.user.microservice.service;
 
-import com.cloud.user.microservice.dto.responseDTO.BaseRespDTO;
+
+import com.cloud.common.dto.BaseRespDTO;
 
 /**
  * 业务系统服务
@@ -17,7 +18,7 @@ public interface SystemInfoService {
      * @param pageSize 页大小
      * @return
      */
-    BaseRespDTO getSystemInfoByName(String systemName,int pageIndex,int pageSize);
+    BaseRespDTO getSystemInfoByName(String systemName, int pageIndex, int pageSize);
 
     /**
      * 保存业务系统

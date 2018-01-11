@@ -1,5 +1,6 @@
 package com.cloud.user.microservice.dto.responseDTO;
 
+import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.user.microservice.model.User;
 import com.cloud.user.microservice.model.vo.UserInfoVO;
 import net.sf.cglib.beans.BeanCopier;
