@@ -52,4 +52,19 @@ public interface IAuthorityDao {
      * @return
      */
     List<Authority> getUserPrivileges(@Param("userId") String userId, @Param("appId")String appId);
+
+    /**
+     * 根据角色id删除权限信息
+     * @param roleIds
+     * @param itemType
+     * @return
+     */
+    int deleteAuthoritiesByRoleId(@Param(value = "roleIds") List<String> roleIds,@Param(value = "itemType") String itemType);
+
+    /**
+     * 根据角色id查询角色权限列表
+     * @param roleId
+     * @return
+     */
+    List<Authority> getAuthoritiesByRoleId(@Param(value = "roleId")String roleId);
 }

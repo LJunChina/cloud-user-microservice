@@ -159,4 +159,20 @@
               SELECT R.ROLE_ID FROM user_role R LEFT JOIN user_info U ON U.ID = R.USER_ID
         WHERE U.ID = #{userId,jdbcType=VARCHAR})
     </select>
+    <delete id="deleteAuthoritiesByRoleId">
+        DELETE FROM authority_role WHERE ID IN
+        (SELECT temp.ID FROM(SELECT authority_role.ID AS ID FROM authority_role
+          LEFT JOIN authority ON authority_role.AUTH_ID = authority.ID
+        WHERE authority_role.ROLE_ID IN
+        <foreach collection="roleIds" separator="," open="(" close=")" item="roleId">
+            #{roleId,jdbcType=VARCHAR}
+        </foreach>
+        AND authority.ITEM_TYPE = #{itemType,jdbcType=VARCHAR}) temp)
+    </delete>
+    <!--根据角色id查询角色权限列表-->
+    <select id="getAuthoritiesByRoleId" resultMap="BaseResultMap">
+        SELECT A.* FROM authority_role R
+        LEFT JOIN authority A ON R.AUTH_ID = A.ID
+        WHERE R.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+    </select>
 </mapper>

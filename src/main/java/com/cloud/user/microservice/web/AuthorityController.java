@@ -88,9 +88,10 @@ public class AuthorityController {
                                           @RequestParam(value = "pageIndex",defaultValue = "1")Integer pageIndex,
                                           @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize,
                                           @RequestParam(value = "appName",defaultValue = StringUtils.EMPTY)String appName,
-                                          @RequestParam(value = "itemType",defaultValue = StringUtils.EMPTY)String itemType){
-        logger.info("the params of getAllAuthoritiesByPage,name:{},pageIndex:{},pageSize:{},appName:{},itemType:{}"
-                ,name,pageIndex,pageSize,appName,itemType);
+                                          @RequestParam(value = "itemType",defaultValue = StringUtils.EMPTY)String itemType,
+                                          @RequestParam(value = "roleId",defaultValue = StringUtils.EMPTY) String roleId){
+        logger.info("the params of getAllAuthoritiesByPage,name:{},pageIndex:{},pageSize:{},appName:{},itemType:{},roleId:{}"
+                ,name,pageIndex,pageSize,appName,itemType,roleId);
         if(EmptyChecker.isEmpty(itemType)){
             return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND).toString();
         }
@@ -101,6 +102,7 @@ public class AuthorityController {
             request.setPageSize(pageSize);
             request.setItemType(itemType);
             request.setName(name);
+            request.setRoleId(roleId);
             BaseRespDTO respDTO = this.authorityService.getAllAuthoritiesByPage(request);
             String result = respDTO.toString();
             logger.info("result of the getAllAuthoritiesByPage is :{}",result);
@@ -118,10 +120,10 @@ public class AuthorityController {
      * @return
      */
     @PostMapping(value = "/allocation-auth")
-    public String allocationAuth(@RequestParam(value = "roleId")String roleId,@RequestParam(value = "authIds")String authIds){
-        logger.info("params of allocationAuth,roleId:{},authIds:{}",roleId,authIds);
+    public String allocationAuth(@RequestParam(value = "roleId")String roleId,@RequestParam(value = "authIds")String authIds,@RequestParam(value = "itemType") String itemType){
+        logger.info("params of allocationAuth,roleId:{},authIds:{},itemType:{}",roleId,authIds,itemType);
         try {
-            BaseRespDTO baseRespDTO = this.authorityService.allocationAuth(roleId,authIds);
+            BaseRespDTO baseRespDTO = this.authorityService.allocationAuth(roleId,authIds,itemType);
             String result = baseRespDTO.toString();
             logger.info("result of allocationAuth:{}",result);
             return result;

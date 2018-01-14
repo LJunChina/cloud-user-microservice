@@ -72,4 +72,16 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
     public void testGetUserPrivileges(){
         Assert.assertNotNull(this.authorityDao.getUserPrivileges("bb659ce6-d158-424e-a1a4-8d7f30d9c09b",null));
     }
+
+    @Test
+    public void testDeleteAuthoritiesByRoleId(){
+        List<String> roleIds = new ArrayList<>();
+        roleIds.add("88953374-5c7d-4106-ab5f-fc7e1501ec5f");
+        Assert.assertTrue(this.authorityDao.deleteAuthoritiesByRoleId(roleIds,"1") >= 1);
+    }
+
+    @Test
+    public void testGetAuthoritiesByRoleId(){
+        Assert.assertNotNull(this.authorityDao.getAuthoritiesByRoleId("d5a6f90e-99b5-409c-a01d-d6f92992285e"));
+    }
 }

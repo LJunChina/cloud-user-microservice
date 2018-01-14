@@ -37,9 +37,10 @@ public interface AuthorityService {
      * 角色权限分配
      * @param roleId
      * @param authIds
+     * @param itemType
      * @return
      */
-    BaseRespDTO allocationAuth(String roleId, String authIds);
+    BaseRespDTO allocationAuth(String roleId, String authIds,String itemType);
 
     /**
      * 查询当前登录用户权限

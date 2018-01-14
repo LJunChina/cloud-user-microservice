@@ -19,10 +19,7 @@ import net.sf.cglib.beans.BeanCopier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -133,6 +130,16 @@ public class AuthorityServiceImpl implements AuthorityService {
     public BaseRespDTO getAllAuthoritiesByPage(AuthorityReqDTO request) {
         PageInfo<AuthoritiesVO> result = PageHelper.startPage(request.getPageIndex()
                 ,request.getPageSize()).doSelectPageInfo(() -> this.authorityDao.getAllAuthorityInfo(request));
+        if(EmptyChecker.notEmpty(request.getRoleId())){
+            //查询当前角色的权限信息
+            List<Authority> authorityList = this.authorityDao.getAuthoritiesByRoleId(request.getRoleId());
+            //设置包含角色权限的对应记录为选中
+            if(EmptyChecker.notEmpty(authorityList)){
+                List<String> authIds = authorityList.stream().map(Authority::getId).collect(Collectors.toList());
+                result.getList().stream().filter(f -> authIds.contains(f.getId())).forEach(r -> r.setSelected(YesOrNoEnum.YES.getCode()));
+            }
+
+        }
         BaseRespDTO respDTO = new BaseRespDTO();
         respDTO.setData(result);
         return respDTO;
@@ -143,13 +150,16 @@ public class AuthorityServiceImpl implements AuthorityService {
      *
      * @param roleId
      * @param authIds
+     * @param itemType
      * @return
      */
     @Override
-    public BaseRespDTO allocationAuth(String roleId, String authIds) {
+    public BaseRespDTO allocationAuth(String roleId, String authIds,String itemType) {
         if(EmptyChecker.isEmpty(roleId) || EmptyChecker.isEmpty(authIds)){
             return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
         }
+        //删除以前的数据
+        this.authorityDao.deleteAuthoritiesByRoleId(Collections.singletonList(roleId),itemType);
         //数据处理
         List<String> ids = Arrays.asList(authIds.split(","));
         AllocationAuthRequest request = new AllocationAuthRequest();

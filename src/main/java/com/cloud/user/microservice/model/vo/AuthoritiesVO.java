@@ -23,6 +23,18 @@ public class AuthoritiesVO implements Serializable {
     private String itemUri;
 
     private String parentName;
+    /**
+     * 当前角色是否拥有该权限 0-表示否 1-表示是
+     */
+    private String selected;
+
+    public String getSelected() {
+        return selected;
+    }
+
+    public void setSelected(String selected) {
+        this.selected = selected;
+    }
 
     public String getParentName() {
         return parentName;
