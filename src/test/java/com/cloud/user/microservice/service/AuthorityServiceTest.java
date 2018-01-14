@@ -7,14 +7,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AuthorityServicelTest extends UserMicroserviceApplicationTests {
+public class AuthorityServiceTest extends UserMicroserviceApplicationTests {
 
     @Autowired
     private AuthorityService authorityService;
 
     @Test
     public void getAllMenus() throws Exception {
-        MenuRespDTO authorityRespDTO = this.authorityService.getAllMenus("cloud_mall","213");
+        MenuRespDTO authorityRespDTO = this.authorityService.getAllMenus("cloud_base","874b0e21-dd87-49ee-b0b9-142cc365618c");
         Assert.assertEquals(ResultCode.OK.getCode(),authorityRespDTO.getCode());
     }
 

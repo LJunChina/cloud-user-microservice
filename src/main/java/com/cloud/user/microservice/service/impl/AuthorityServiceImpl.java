@@ -15,6 +15,7 @@ import com.cloud.user.microservice.model.vo.AuthorityVO;
 import com.cloud.user.microservice.service.AuthorityService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import net.sf.cglib.beans.BeanCopier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,21 +87,41 @@ public class AuthorityServiceImpl implements AuthorityService {
         if(EmptyChecker.isEmpty(items)){
             return;
         }
+        BeanCopier copier = BeanCopier.create(Authority.class,AuthorityVO.class,false);
+        List<AuthorityVO> originList = new ArrayList<>();
+        items.forEach(o ->{
+            AuthorityVO temp = new AuthorityVO();
+            copier.copy(o,temp,null);
+            originList.add(temp);
+        });
         List<AuthorityVO> resultData = new ArrayList<>();
-        items.forEach(i -> {
-            AuthorityVO authorityVO = new AuthorityVO();
-            authorityVO.setItem(i);
-            //过滤出child
-            //只添加顶级菜单
+        originList.forEach(i -> {
             if(i.getDeep().equals(0)){
-                authorityVO.setChild(items.stream()
-                        .filter(s -> s.getParentId().equals(i.getId()))
-                        .collect(Collectors.toList()));
-                resultData.add(authorityVO);
+                resultData.add(findChildren(i,originList));
             }
         });
         respDTO.setResultData(resultData);
     }
+
+    /**
+     * 递归查找子节点
+     * @param authoritiesVO
+     * @param menus
+     * @return
+     */
+    private AuthorityVO findChildren(AuthorityVO authoritiesVO,List<AuthorityVO> menus){
+        for (AuthorityVO vo : menus){
+            if(authoritiesVO.getId().equals(vo.getParentId())){
+                if(EmptyChecker.isEmpty(authoritiesVO.getChild())){
+                    authoritiesVO.setChild(new ArrayList<>());
+                }
+                authoritiesVO.getChild().add(findChildren(vo,menus));
+            }
+        }
+        return authoritiesVO;
+    }
+
+
 
     /**
      * 系统权限信息分页查询

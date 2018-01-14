@@ -2,7 +2,6 @@ package com.cloud.user.microservice.model.vo;
 
 import com.cloud.user.microservice.model.Authority;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,20 +10,10 @@ import java.util.List;
  * @author Jon_China
  * @create 2017/12/17
  */
-public class AuthorityVO implements Serializable {
+public class AuthorityVO extends Authority {
     private static final long serialVersionUID = -6366052011717780392L;
 
-    private Authority item;
-
     private List<Authority> child;
-
-    public Authority getItem() {
-        return item;
-    }
-
-    public void setItem(Authority item) {
-        this.item = item;
-    }
 
     public List<Authority> getChild() {
         return child;
