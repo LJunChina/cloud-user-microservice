@@ -136,4 +136,27 @@ public class UserController {
         }
     }
 
+    /**
+     * 用户退出登录
+     * @param tokenId
+     * @return
+     */
+    @PostMapping("/logout/{tokenId}")
+    public String userLogout(@PathVariable(value = "tokenId") String tokenId){
+        if(EmptyChecker.isEmpty(tokenId)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND).toString();
+        }
+        logger.info("the params of userLogout is :{}",tokenId);
+        try {
+            boolean result = this.tokenService.deleteTokenInfo(tokenId);
+            logger.info("this result of userLogout is : {}" ,result);
+            BaseRespDTO respDTO = new BaseRespDTO();
+            respDTO.setData(result);
+            return respDTO.toString();
+        }catch (Exception e){
+            logger.error("exception occurred in userLogout :",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
 }
