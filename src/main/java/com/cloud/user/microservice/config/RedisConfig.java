@@ -33,7 +33,7 @@ public class RedisConfig {
     @Bean
     public RedisTemplate<String,String> getRedisTemplate(RedisConnectionFactory factory){
         StringRedisTemplate template = new StringRedisTemplate(factory);
-        Jackson2JsonRedisSerializer jsonRedisSerializer =  new Jackson2JsonRedisSerializer(Object.class);
+        Jackson2JsonRedisSerializer<?> jsonRedisSerializer =  new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);

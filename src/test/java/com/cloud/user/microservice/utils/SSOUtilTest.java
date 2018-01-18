@@ -2,6 +2,7 @@ package com.cloud.user.microservice.utils;
 
 import org.junit.Test;
 
+import java.net.URLEncoder;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -14,5 +15,15 @@ public class SSOUtilTest {
         String[] strings = uuid.split("-");
         Stream.of(strings).forEach(s -> sb.append(s));
         System.out.println(sb.toString().toUpperCase());
+    }
+
+    @Test
+    public void urlEncoder(){
+        try {
+            System.out.println(URLEncoder.encode("http://local.joninfo.cn:8020/index.html&appName=user-app","UTF-8"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

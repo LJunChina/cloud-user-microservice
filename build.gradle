@@ -4,7 +4,7 @@ buildscript {
 	}
 	repositories {
         maven {
-            url 'http://localhost:8080/nexus/content/groups/public/'
+            url 'http://115.159.152.121:8080/nexus/content/groups/public/'
         }
 	}
 	dependencies {
@@ -22,7 +22,7 @@ sourceCompatibility = 1.8
 
 repositories {
     maven {
-        url 'http://localhost:8080/nexus/content/groups/public/'
+        url 'http://115.159.152.121:8080/nexus/content/groups/public/'
     }
 }
 
