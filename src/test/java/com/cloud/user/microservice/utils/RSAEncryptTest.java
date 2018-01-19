@@ -1,5 +1,7 @@
 package com.cloud.user.microservice.utils;
 
+import com.cloud.common.encrypt.EncryptUtil;
+import com.cloud.common.encrypt.RSAEncrypt;
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,6 +43,11 @@ public class RSAEncryptTest extends UserMicroserviceApplicationTests {
         RSAPrivateKey privateKey = RSAEncrypt.loadPrivateKeyByStr(priveteKeyStr);
         byte[] dencrypt = RSAEncrypt.decrypt(privateKey,pass);
         Assert.assertEquals("123456",new String(dencrypt));
+    }
+
+    @Test
+    public void testCommonEncrypt(){
+        System.out.println(EncryptUtil.encryptSha512("123456test"));
     }
 
 

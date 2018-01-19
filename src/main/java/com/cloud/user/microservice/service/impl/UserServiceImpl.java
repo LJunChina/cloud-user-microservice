@@ -1,6 +1,8 @@
 package com.cloud.user.microservice.service.impl;
 
 import com.cloud.common.dto.BaseRespDTO;
+import com.cloud.common.encrypt.EncryptUtil;
+import com.cloud.common.encrypt.RSAEncrypt;
 import com.cloud.common.enums.ResultCode;
 import com.cloud.common.enums.YesOrNoEnum;
 import com.cloud.common.util.EmptyChecker;
@@ -13,9 +15,7 @@ import com.cloud.user.microservice.model.vo.UserPageVO;
 import com.cloud.user.microservice.service.TokenService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import com.cloud.user.microservice.service.UserService;
-import com.cloud.user.microservice.utils.RSAEncrypt;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.interfaces.RSAPrivateKey;
+import java.util.Base64;
 import java.util.UUID;
 
 @Service(value = "userService")
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
         InputStreamReader reader = new InputStreamReader(inputStream);
         String privateKeyStr = RSAEncrypt.loadKeyByFile(reader);
         RSAPrivateKey privateKey = RSAEncrypt.loadPrivateKeyByStr(privateKeyStr);
-        byte[] passwordByte = RSAEncrypt.decrypt(privateKey,Base64.decode(password));
+        byte[] passwordByte = RSAEncrypt.decrypt(privateKey, Base64.getDecoder().decode(password));
         if(EmptyChecker.isEmpty(passwordByte)){
             return new BaseRespDTO(ResultCode.FAIL);
         }
@@ -64,7 +65,7 @@ public class UserServiceImpl implements UserService {
         if(EmptyChecker.isEmpty(currentUser)){
             return new BaseRespDTO(ResultCode.USER_NAME_OR_PASSWORD_ERROR);
         }
-        String realPassword = DigestUtils.sha256Hex(new String(passwordByte) + currentUser.getUserName());
+        String realPassword = EncryptUtil.encryptSha512(new String(passwordByte) + currentUser.getUserName());
         //加密
         String originPassword = currentUser.getPassword();
         //密码比对
@@ -126,7 +127,7 @@ public class UserServiceImpl implements UserService {
         //初始化密码、状态信息
         user.setIsAdmin(YesOrNoEnum.NO.getCode());
         user.setId(UUID.randomUUID().toString());
-        user.setPassword(DigestUtils.sha256Hex(INI_PASSWORD + user.getUserName()));
+        user.setPassword(EncryptUtil.encryptSha512(INI_PASSWORD + user.getUserName()));
         int row = this.userDao.saveUser(user);
         if(row > 0){
             return new BaseRespDTO();
