@@ -23,6 +23,19 @@ public class RolePageVO implements Serializable {
 
     private String describe;
 
+    /**
+     * 1-表示已拥有 0-表示未拥有
+     */
+    private String selected;
+
+    public String getSelected() {
+        return selected;
+    }
+
+    public void setSelected(String selected) {
+        this.selected = selected;
+    }
+
     public String getAppName() {
         return appName;
     }

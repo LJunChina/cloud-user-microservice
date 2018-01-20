@@ -2,11 +2,14 @@ package com.cloud.user.microservice.service.impl;
 
 import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.common.enums.ResultCode;
+import com.cloud.common.enums.YesOrNoEnum;
 import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.dao.IRoleInfoDao;
+import com.cloud.user.microservice.dao.IUserRoleDao;
 import com.cloud.user.microservice.dto.requestDTO.UserAllocationRequest;
 import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
 import com.cloud.user.microservice.model.RoleInfo;
+import com.cloud.user.microservice.model.UserRole;
 import com.cloud.user.microservice.model.vo.RolePageVO;
 import com.cloud.user.microservice.service.RoleInfoService;
 import com.github.pagehelper.PageHelper;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author Jon_China
@@ -27,6 +31,8 @@ public class RoleInfoServiceImpl implements RoleInfoService {
 
     @Autowired
     private IRoleInfoDao roleInfoDao;
+    @Autowired
+    private IUserRoleDao userRoleDao;
     /**
      * 添加角色信息
      * @param roleName
@@ -60,6 +66,20 @@ public class RoleInfoServiceImpl implements RoleInfoService {
     public BaseRespDTO getAllRoleInfo(RolePageReqDTO request) {
         PageInfo<RolePageVO> result = PageHelper.startPage(request.getPageIndex(),request.getPageSize())
                 .doSelectPageInfo(() -> this.roleInfoDao.getAllRoleInfo(request));
+
+        //根据userId查询用户角色信息
+        List<UserRole> userRoles = this.userRoleDao.getRoleIdsByUserId(request.getUserId());
+        if(EmptyChecker.notEmpty(userRoles)){
+            //若用户角色列表包含返回列表值则选中
+            List<String> roleList = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
+            result.getList().forEach(r -> {
+                if(roleList.contains(r.getId())){
+                    r.setSelected(YesOrNoEnum.YES.getCode());
+                }else {
+                    r.setSelected(YesOrNoEnum.NO.getCode());
+                }
+            });
+        }
         BaseRespDTO respDTO = new BaseRespDTO();
         respDTO.setData(result);
         return respDTO;

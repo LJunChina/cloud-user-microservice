@@ -65,7 +65,8 @@ public class RoleInfoController {
     public String getAllRoleInfo(@RequestParam(value = "roleName",defaultValue = StringUtils.EMPTY) String roleName,
                                  @RequestParam(value = "appId",defaultValue = StringUtils.EMPTY) String appId,
                                  @RequestParam(value = "pageIndex",defaultValue = "1") Integer pageIndex,
-                                 @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize){
+                                 @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                 @RequestParam(value = "userId") String userId){
         logger.info("the params of getAllRoleInfo,roleName:{},appId:{},pageIndex:{},pageSize:{} ",roleName,appId,pageIndex,pageSize);
         try {
             RolePageReqDTO request = new RolePageReqDTO();
@@ -73,6 +74,7 @@ public class RoleInfoController {
             request.setAppId(appId);
             request.setPageIndex(pageIndex);
             request.setPageSize(pageSize);
+            request.setUserId(userId);
             BaseRespDTO baseRespDTO = this.roleInfoService.getAllRoleInfo(request);
             String result = baseRespDTO.toString();
             logger.info("the result of getAllRoleInfo is : {}",result);

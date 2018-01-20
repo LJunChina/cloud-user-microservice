@@ -2,8 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloud.user.microservice.dao.IUserRoleDao">
     <resultMap id="BaseResultMap" type="com.cloud.user.microservice.model.UserRole">
-        <id column="id" jdbcType="VARCHAR" property="id" />
-        <result column="user_id" jdbcType="VARCHAR" property="userId" />
-        <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+        <id column="ID" jdbcType="VARCHAR" property="id" />
+        <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+        <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
     </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,USER_ID,ROLE_ID
+    </sql>
+
+    <!--查询用户角色信息-->
+    <select id="getRoleIdsByUserId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM user_role WHERE USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
 </mapper>
