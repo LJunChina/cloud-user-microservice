@@ -4,6 +4,7 @@ import com.cloud.user.microservice.dto.requestDTO.RolePageReqDTO;
 import com.cloud.user.microservice.dto.requestDTO.UserAllocationRequest;
 import com.cloud.user.microservice.model.RoleInfo;
 import com.cloud.user.microservice.model.vo.RolePageVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,5 +31,12 @@ public interface IRoleInfoDao {
      * @return
      */
     int allocationUsers(UserAllocationRequest request);
+
+    /**
+     * 根据用户id删除用户所有角色信息
+     * @param userId
+     * @return
+     */
+    int deleteRoleForUserId(@Param(value = "userId") String userId);
 
 }

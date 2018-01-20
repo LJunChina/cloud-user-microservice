@@ -73,4 +73,7 @@
             (UUID(),#{userId,jdbcType=VARCHAR},#{item,jdbcType=VARCHAR})
         </foreach>
     </insert>
+    <delete id="deleteRoleForUserId">
+        DELETE FROM user_role WHERE USER_ID = #{userId,jdbcType=VARCHAR}
+    </delete>
 </mapper>

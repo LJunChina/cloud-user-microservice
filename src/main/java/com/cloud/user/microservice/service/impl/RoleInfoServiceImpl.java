@@ -80,6 +80,8 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         List<String> roleId = Arrays.asList(roleIds.split(","));
         request.setUserId(userId);
         request.setRoleIds(roleId);
+        //删除用户角色信息
+        this.roleInfoDao.deleteRoleForUserId(userId);
         int row = this.roleInfoDao.allocationUsers(request);
         if(row >= 1){
             return new BaseRespDTO();

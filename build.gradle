@@ -38,7 +38,7 @@ dependencies {
 	compile('mysql:mysql-connector-java:6.0.2')
     compile('com.alibaba:druid-spring-boot-starter:1.1.4')
     compile('org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE')
-	compile('commons-codec:commons-codec:1.9')
+	compile 'org.springframework.boot:spring-boot-starter-aop:1.5.8.RELEASE'
 	compile('com.cloud:common:1.0-SNAPSHOT')
 	compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
 	compile('org.sonatype.sisu.inject:cglib:3.1')

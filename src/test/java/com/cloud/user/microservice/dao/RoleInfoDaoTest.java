@@ -46,4 +46,9 @@ public class RoleInfoDaoTest extends UserMicroserviceApplicationTests {
         request.setRoleIds(userIds);
         Assert.assertEquals(1,this.roleInfoDao.allocationUsers(request));
     }
+
+    @Test
+    public void testDeleteRoleForUserId(){
+        Assert.assertTrue(this.roleInfoDao.deleteRoleForUserId("26fd50cc-382f-4a6c-a593-983bf584d577") >=1);
+    }
 }
