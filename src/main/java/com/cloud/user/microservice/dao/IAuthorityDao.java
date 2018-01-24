@@ -67,4 +67,11 @@ public interface IAuthorityDao {
      * @return
      */
     List<Authority> getAuthoritiesByRoleId(@Param(value = "roleId")String roleId);
+
+    /**
+     * 更新权限信息,包括菜单及操作
+     * @param authority
+     * @return
+     */
+    int updateAuthority(Authority authority);
 }

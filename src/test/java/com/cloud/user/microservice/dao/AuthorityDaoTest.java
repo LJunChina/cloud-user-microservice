@@ -4,6 +4,7 @@ import com.cloud.common.enums.YesOrNoEnum;
 import com.cloud.user.microservice.UserMicroserviceApplicationTests;
 import com.cloud.user.microservice.dto.requestDTO.AllocationAuthRequest;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
+import com.cloud.user.microservice.model.Authority;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +84,14 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
     @Test
     public void testGetAuthoritiesByRoleId(){
         Assert.assertNotNull(this.authorityDao.getAuthoritiesByRoleId("d5a6f90e-99b5-409c-a01d-d6f92992285e"));
+    }
+
+    @Test
+    public void testUpdateAuthority(){
+        AuthorityReqDTO request = new AuthorityReqDTO();
+        request.setId("7a57e08b-ecf1-4906-8e73-dfd26faa66cf");
+        Authority authority = this.authorityDao.getAuthorityInfo(request);
+        authority.setName("修改测试");
+        Assert.assertTrue(this.authorityDao.updateAuthority(authority) == 1);
     }
 }

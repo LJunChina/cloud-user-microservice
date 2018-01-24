@@ -60,6 +60,7 @@
             <if test="deep != null">
                 DEEP,
             </if>
+            UPDATE_AT,CREATE_AT
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id,jdbcType=VARCHAR},
@@ -93,6 +94,7 @@
             <if test="deep != null">
                 1,
             </if>
+            SYSDATE(),SYSDATE()
         </trim>
     </insert>
 
@@ -175,4 +177,14 @@
         LEFT JOIN authority A ON R.AUTH_ID = A.ID
         WHERE R.ROLE_ID = #{roleId,jdbcType=VARCHAR}
     </select>
+    <!--根据id更新权限信息-->
+    <update id="updateAuthority" parameterType="com.cloud.user.microservice.model.Authority">
+        UPDATE authority SET
+        NAME = #{name,jdbcType=VARCHAR},
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+        STYLE = #{style,jdbcType=VARCHAR},
+        ITEM_URI = #{itemUri,jdbcType=VARCHAR},
+        CREATE_AT = SYSDATE()
+        WHERE ID = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>
