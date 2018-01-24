@@ -94,4 +94,9 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
         authority.setName("修改测试");
         Assert.assertTrue(this.authorityDao.updateAuthority(authority) == 1);
     }
+
+    @Test
+    public void testGetAuthoritiesById(){
+        Assert.assertNotNull(this.authorityDao.getAuthoritiesById("7a57e08b-ecf1-4906-8e73-dfd26faa66cf"));
+    }
 }

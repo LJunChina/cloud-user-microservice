@@ -74,4 +74,6 @@ public interface IAuthorityDao {
      * @return
      */
     int updateAuthority(Authority authority);
+
+    Authority getAuthoritiesById(@Param(value = "id") String id);
 }

@@ -187,4 +187,8 @@
         CREATE_AT = SYSDATE()
         WHERE ID = #{id,jdbcType=VARCHAR}
     </update>
+    <!--根据id查询权限信息-->
+    <select id="getAuthoritiesById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM authority WHERE ID = #{id,jdbcType=VARCHAR}
+    </select>
 </mapper>

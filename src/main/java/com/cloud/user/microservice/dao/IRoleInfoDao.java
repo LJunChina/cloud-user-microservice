@@ -39,4 +39,6 @@ public interface IRoleInfoDao {
      */
     int deleteRoleForUserId(@Param(value = "userId") String userId);
 
+
+
 }
