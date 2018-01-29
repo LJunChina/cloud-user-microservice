@@ -2,6 +2,7 @@ package com.cloud.user.microservice.web;
 
 import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.common.enums.ResultCode;
+import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.service.SystemInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +70,26 @@ public class SystemInfoController {
             return result;
         }catch (Exception e){
             logger.error("exception occurred in saveSystemInfo",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+
+    /**
+     * 删除系统信息接口
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/delete-system-info/{id}")
+    public String deleteSystemInfo(@PathVariable(value = "id",required = false)String id){
+        logger.info("params of deleteSystemInfo,id:{}",id);
+        try {
+            BaseRespDTO baseRespDTO = this.systemInfoService.deleteSystemInfo(id);
+            String result = baseRespDTO.toString();
+            logger.info("result of the deleteSystemInfo is :{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in deleteSystemInfo",e);
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }

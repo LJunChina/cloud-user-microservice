@@ -32,4 +32,9 @@ public class SystemInfoDaoTest extends UserMicroserviceApplicationTests {
         Assert.assertEquals(1,this.systemInfoDao.saveSystemInfo(systemInfo));
     }
 
+    @Test
+    public void testDeleteSystemInfo(){
+        Assert.assertTrue(this.systemInfoDao.deleteSystemInfo("a6d27b4f-9acd-455b-80fd-0a3e1e301896") == 1);
+    }
+
 }

@@ -29,4 +29,11 @@ public interface SystemInfoService {
      * @return
      */
     BaseRespDTO saveSystemInfo(String systemName,String systemChn,String systemHost,String systemContext);
+
+    /**
+     * 根据id删除业务系统信息
+     * @param id
+     * @return
+     */
+    BaseRespDTO deleteSystemInfo(String id);
 }

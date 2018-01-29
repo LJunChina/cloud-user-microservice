@@ -25,4 +25,9 @@
         #{systemName,jdbcType=VARCHAR},
         #{systemChn,jdbcType=VARCHAR},#{systemHost,jdbcType=VARCHAR},#{systemContext,jdbcType=VARCHAR})
     </insert>
+
+    <!--根据id删除系统信息-->
+    <delete id="deleteSystemInfo">
+        DELETE FROM system_info WHERE ID = #{id,jdbcType=VARCHAR}
+    </delete>
 </mapper>

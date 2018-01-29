@@ -2,6 +2,7 @@ package com.cloud.user.microservice.service.impl;
 
 import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.common.enums.ResultCode;
+import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.dao.ISystemInfoDao;
 import com.cloud.user.microservice.model.SystemInfo;
 import com.cloud.user.microservice.service.SystemInfoService;
@@ -18,6 +19,8 @@ import java.util.UUID;
  */
 @Service(value = "systemInfoService")
 public class SystemInfoServiceImpl implements SystemInfoService {
+
+    private static final String ERROR_MSG_ID_NOT_NULL = "ID不能为空";
 
     @Autowired
     private ISystemInfoDao systemInfoDao;
@@ -57,6 +60,18 @@ public class SystemInfoServiceImpl implements SystemInfoService {
         systemInfo.setSystemChn(systemChn);
         int row = this.systemInfoDao.saveSystemInfo(systemInfo);
         if(row == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
+
+    @Override
+    public BaseRespDTO deleteSystemInfo(String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.FAIL.getCode(),ERROR_MSG_ID_NOT_NULL);
+        }
+        int effectRow = this.systemInfoDao.deleteSystemInfo(id);
+        if(effectRow == 1){
             return new BaseRespDTO();
         }
         return new BaseRespDTO(ResultCode.FAIL);

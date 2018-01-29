@@ -22,4 +22,11 @@ public interface ISystemInfoDao {
      * @return
      */
     int saveSystemInfo(SystemInfo systemInfo);
+
+    /**
+     * 根据id删除系统信息
+     * @param id
+     * @return
+     */
+    int deleteSystemInfo(@Param(value = "id") String id);
 }
