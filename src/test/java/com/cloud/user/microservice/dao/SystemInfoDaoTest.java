@@ -37,4 +37,13 @@ public class SystemInfoDaoTest extends UserMicroserviceApplicationTests {
         Assert.assertTrue(this.systemInfoDao.deleteSystemInfo("a6d27b4f-9acd-455b-80fd-0a3e1e301896") == 1);
     }
 
+    @Test
+    public void testUpdateSystemInfo(){
+        SystemInfo systemInfo = this.systemInfoDao.getSystemInfoById("7a7b671c-14a5-4349-8a75-d59ad8b615d3");
+        Assert.assertNotNull(systemInfo);
+        systemInfo.setSystemChn("修改测试");
+        systemInfo.setSystemName("我是修改");
+        Assert.assertTrue(this.systemInfoDao.updateSystemInfo(systemInfo) == 1);
+    }
+
 }

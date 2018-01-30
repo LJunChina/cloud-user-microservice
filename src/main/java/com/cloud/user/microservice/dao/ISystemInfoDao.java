@@ -29,4 +29,18 @@ public interface ISystemInfoDao {
      * @return
      */
     int deleteSystemInfo(@Param(value = "id") String id);
+
+    /**
+     * 更新系统信息
+     * @param systemInfo
+     * @return
+     */
+    int updateSystemInfo(SystemInfo systemInfo);
+
+    /**
+     * 根据id查询系统信息
+     * @param id
+     * @return
+     */
+    SystemInfo getSystemInfoById(@Param(value = "id")String id);
 }

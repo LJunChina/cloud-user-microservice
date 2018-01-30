@@ -20,14 +20,38 @@
     </select>
 
     <insert id="saveSystemInfo" parameterType="com.cloud.user.microservice.model.SystemInfo">
-        INSERT INTO system_info VALUES (
-        #{id,jdbcType=VARCHAR},
-        #{systemName,jdbcType=VARCHAR},
-        #{systemChn,jdbcType=VARCHAR},#{systemHost,jdbcType=VARCHAR},#{systemContext,jdbcType=VARCHAR})
+        INSERT INTO system_info
+            (ID,SYSTEM_NAME,SYSTEM_CHN,SYSTEM_HOST,SYSTEM_CONTEXT,CREATE_AT,UPDATE_AT)
+        VALUES
+            (
+                UUID(),
+                #{systemName,jdbcType=VARCHAR},
+                #{systemChn,jdbcType=VARCHAR},
+                #{systemHost,jdbcType=VARCHAR},
+                #{systemContext,jdbcType=VARCHAR},
+                SYSDATE(),
+                SYSDATE()
+            )
     </insert>
 
     <!--根据id删除系统信息-->
     <delete id="deleteSystemInfo">
         DELETE FROM system_info WHERE ID = #{id,jdbcType=VARCHAR}
     </delete>
+
+    <!--更新系统信息-->
+    <update id="updateSystemInfo" parameterType="com.cloud.user.microservice.model.SystemInfo">
+        UPDATE system_info
+          SET SYSTEM_NAME = #{systemName,jdbcType=VARCHAR},
+              SYSTEM_CHN = #{systemChn,jdbcType=VARCHAR},
+              SYSTEM_CONTEXT = #{systemContext,jdbcType=VARCHAR},
+              SYSTEM_HOST = #{systemHost,jdbcType=VARCHAR},
+              UPDATE_AT = SYSDATE()
+        WHERE ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--根据id查询系统信息-->
+    <select id="getSystemInfoById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM system_info WHERE ID = #{id,jdbcType=VARCHAR}
+    </select>
 </mapper>
