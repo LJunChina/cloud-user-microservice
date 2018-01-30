@@ -36,4 +36,22 @@ public interface SystemInfoService {
      * @return
      */
     BaseRespDTO deleteSystemInfo(String id);
+
+    /**
+     * 根据id查询系统信息
+     * @param id
+     * @return
+     */
+    BaseRespDTO selectSystemInfo(String id);
+
+    /**
+     * 更新系统信息
+     * @param systemName
+     * @param systemChn
+     * @param systemHost
+     * @param systemContext
+     * @param id
+     * @return
+     */
+    BaseRespDTO updateSystemInfo(String systemName,String systemChn,String systemHost,String systemContext,String id);
 }

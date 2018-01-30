@@ -4,6 +4,7 @@ import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.common.enums.ResultCode;
 import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.service.SystemInfoService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,10 @@ public class SystemInfoController {
      * @return
      */
     @PostMapping(value = "/save-system-info")
-    public String saveSystemInfo(@RequestParam(value = "systemName",defaultValue = "")String systemName,
-                                 @RequestParam(value = "systemChn",defaultValue = "")String systemChn,
-                                 @RequestParam(value = "systemHost",defaultValue = "")String systemHost,
-                                 @RequestParam(value = "systemContext",defaultValue = "")String systemContext,
-                                 @RequestBody String body){
+    public String saveSystemInfo(@RequestParam(value = "systemName",defaultValue = StringUtils.EMPTY)String systemName,
+                                 @RequestParam(value = "systemChn",defaultValue = StringUtils.EMPTY)String systemChn,
+                                 @RequestParam(value = "systemHost",defaultValue = StringUtils.EMPTY)String systemHost,
+                                 @RequestParam(value = "systemContext",defaultValue = StringUtils.EMPTY)String systemContext){
         logger.info("params of saveSystemInfo,systemName:{},systemChn:{},systemHost:{},systemContext:{}",systemName,systemChn,systemHost,systemContext);
         try {
             BaseRespDTO baseRespDTO = this.systemInfoService.saveSystemInfo(systemName,systemChn,systemHost,systemContext);
@@ -90,6 +90,52 @@ public class SystemInfoController {
             return result;
         }catch (Exception e){
             logger.error("exception occurred in deleteSystemInfo",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 获取系统详情
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/get/{id}")
+    public String getSystemInfoDetail(@PathVariable(value = "id")String id){
+        logger.info("params of getSystemInfoDetail,id:{}",id);
+        try {
+            BaseRespDTO baseRespDTO = this.systemInfoService.selectSystemInfo(id);
+            String result = baseRespDTO.toString();
+            logger.info("result of the getSystemInfoDetail is :{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in getSystemInfoDetail",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 更新系统信息
+     * @param systemName
+     * @param systemChn
+     * @param systemHost
+     * @param systemContext
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/update/{id}")
+    public String updateSystemInfo(@RequestParam(value = "systemName",defaultValue = StringUtils.EMPTY)String systemName,
+                                   @RequestParam(value = "systemChn",defaultValue = StringUtils.EMPTY)String systemChn,
+                                   @RequestParam(value = "systemHost",defaultValue = StringUtils.EMPTY)String systemHost,
+                                   @RequestParam(value = "systemContext",defaultValue = StringUtils.EMPTY)String systemContext,
+                                   @PathVariable(value = "id")String id){
+        logger.info("params of updateSystemInfo,systemName:{},systemChn:{},systemHost:{},systemContext:{},id:{}",systemName,systemChn,systemHost,systemContext,id);
+        try {
+            BaseRespDTO baseRespDTO = this.systemInfoService.updateSystemInfo(systemName,systemChn,systemHost,systemContext,id);
+            String result = baseRespDTO.toString();
+            logger.info("result of the updateSystemInfo is :{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in updateSystemInfo",e);
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }
