@@ -112,7 +112,7 @@ public class SystemInfoServiceImpl implements SystemInfoService {
         //查询系统信息
         SystemInfo currentSystem = this.systemInfoDao.getSystemInfoById(id);
         if(EmptyChecker.isEmpty(currentSystem)){
-            return new BaseRespDTO(ResultCode.FAIL.getCode(),"未查询到任何数据");
+            return new BaseRespDTO(ResultCode.NO_DATA_FOUND);
         }
         currentSystem.setSystemName(systemName);
         currentSystem.setSystemChn(systemChn);
