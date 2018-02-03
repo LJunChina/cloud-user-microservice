@@ -73,7 +73,24 @@
             (UUID(),#{userId,jdbcType=VARCHAR},#{item,jdbcType=VARCHAR})
         </foreach>
     </insert>
+
+    <!--删除用户角色信息-->
     <delete id="deleteRoleForUserId">
         DELETE FROM user_role WHERE USER_ID = #{userId,jdbcType=VARCHAR}
     </delete>
+    <!--更新角色信息-->
+    <update id="updateRoleInfo" parameterType="com.cloud.user.microservice.model.RoleInfo">
+        UPDATE role_info
+          SET
+              ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+              APP_ID = #{appId,jdbcType=VARCHAR},
+              ROLE_TYPE = #{roleType,jdbcType=VARCHAR},
+              ROLE_DESCRIBE = #{describe,jdbcType=VARCHAR},
+              UPDATE_AT = SYSDATE()
+        WHERE ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <!--根据id查询角色详情-->
+    <select id="getRoleInfoById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM role_info WHERE ID = #{id,jdbcType=VARCHAR}
+    </select>
 </mapper>

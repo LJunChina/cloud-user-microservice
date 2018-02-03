@@ -29,4 +29,22 @@ public interface RoleInfoService {
      * @return
      */
     BaseRespDTO allocationUsers(String userId,String roleIds);
+
+    /**
+     * 角色详情查询
+     * @param id
+     * @return
+     */
+    BaseRespDTO getRoleInfo(String id);
+
+    /**
+     * 更新角色信息
+     * @param roleName
+     * @param appId
+     * @param roleType
+     * @param describe
+     * @param id
+     * @return
+     */
+    BaseRespDTO updateRoleInfo(String roleName,String appId,String roleType,String describe,String id);
 }

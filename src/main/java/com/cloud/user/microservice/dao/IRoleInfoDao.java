@@ -39,6 +39,18 @@ public interface IRoleInfoDao {
      */
     int deleteRoleForUserId(@Param(value = "userId") String userId);
 
+    /**
+     * 更新角色信息
+     * @param roleInfo
+     * @return
+     */
+    int updateRoleInfo(RoleInfo roleInfo);
 
+    /**
+     * 根据id查询角色详情
+     * @param id
+     * @return
+     */
+    RoleInfo getRoleInfoById(@Param(value = "id") String id);
 
 }

@@ -108,4 +108,52 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         }
         return new BaseRespDTO(ResultCode.FAIL);
     }
+
+    /**
+     * 角色详情查询
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseRespDTO getRoleInfo(String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"id不能为空");
+        }
+        RoleInfo roleInfo = this.roleInfoDao.getRoleInfoById(id);
+        BaseRespDTO respDTO = new BaseRespDTO();
+        respDTO.setData(roleInfo);
+        return respDTO;
+    }
+
+    /**
+     * 更新角色信息
+     *
+     * @param roleName
+     * @param appId
+     * @param roleType
+     * @param describe
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseRespDTO updateRoleInfo(String roleName, String appId, String roleType, String describe, String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"id不能为空");
+        }
+        //查询角色信息
+        RoleInfo roleInfo = this.roleInfoDao.getRoleInfoById(id);
+        if(EmptyChecker.isEmpty(roleInfo)){
+            return new BaseRespDTO(ResultCode.NO_DATA_FOUND);
+        }
+        roleInfo.setRoleType(roleType);
+        roleInfo.setRoleName(roleName);
+        roleInfo.setDescribe(describe);
+        roleInfo.setAppId(appId);
+        int effectRow = this.roleInfoDao.updateRoleInfo(roleInfo);
+        if(effectRow == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
 }
