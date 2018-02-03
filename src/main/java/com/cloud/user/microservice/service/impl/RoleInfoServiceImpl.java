@@ -43,6 +43,9 @@ public class RoleInfoServiceImpl implements RoleInfoService {
      */
     @Override
     public BaseRespDTO saveRoleInfo(String roleName, String roleType, String appId, String describe) {
+        if(EmptyChecker.isEmpty(roleType) || roleType.length() > 2){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"非法参数");
+        }
         RoleInfo roleInfo = new RoleInfo();
         roleInfo.setId(UUID.randomUUID().toString());
         roleInfo.setRoleName(roleName);
