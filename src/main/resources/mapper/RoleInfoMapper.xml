@@ -93,4 +93,9 @@
     <select id="getRoleInfoById" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List"/> FROM role_info WHERE ID = #{id,jdbcType=VARCHAR}
     </select>
+
+    <!--根据id删除角色信息-->
+    <delete id="deleteRoleInfoById">
+        DELETE FROM role_info WHERE ID = #{id,jdbcType=VARCHAR}
+    </delete>
 </mapper>

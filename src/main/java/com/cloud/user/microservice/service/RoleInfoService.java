@@ -47,4 +47,11 @@ public interface RoleInfoService {
      * @return
      */
     BaseRespDTO updateRoleInfo(String roleName,String appId,String roleType,String describe,String id);
+
+    /**
+     * 根据id删除角色信息
+     * @param id
+     * @return
+     */
+    BaseRespDTO deleteRoleInfoById(String id);
 }

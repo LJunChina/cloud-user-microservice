@@ -159,4 +159,22 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         }
         return new BaseRespDTO(ResultCode.FAIL);
     }
+
+    /**
+     * 根据id删除角色信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseRespDTO deleteRoleInfoById(String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"id不能为空");
+        }
+        int effectRow = this.roleInfoDao.deleteRoleInfoById(id);
+        if(effectRow == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
 }

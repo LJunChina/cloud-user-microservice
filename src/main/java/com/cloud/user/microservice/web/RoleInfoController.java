@@ -151,4 +151,23 @@ public class RoleInfoController {
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }
+
+    /**
+     * 删除角色信息
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/delete/{id}")
+    public String deleteRoleInfoById(@PathVariable(value = "id") String id){
+        logger.info("deleteRoleInfoById request param,id:{}",id);
+        try {
+            BaseRespDTO respDTO = this.roleInfoService.deleteRoleInfoById(id);
+            String result = respDTO.toString();
+            logger.info("the result of deleteRoleInfoById is : {}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in deleteRoleInfoById",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
 }

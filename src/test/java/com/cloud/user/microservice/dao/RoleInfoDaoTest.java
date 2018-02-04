@@ -61,4 +61,9 @@ public class RoleInfoDaoTest extends UserMicroserviceApplicationTests {
         roleInfo.setRoleType("01");
         Assert.assertTrue(this.roleInfoDao.updateRoleInfo(roleInfo) == 1);
     }
+
+    @Test
+    public void testDeleteRoleInfoById(){
+        Assert.assertTrue(this.roleInfoDao.deleteRoleInfoById("30a005d9-c69c-4ae0-b573-9c97ac7041f2") == 1);
+    }
 }
