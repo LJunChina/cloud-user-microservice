@@ -39,7 +39,7 @@ dependencies {
     compile('com.alibaba:druid-spring-boot-starter:1.1.4')
     compile('org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE')
 	compile 'org.springframework.boot:spring-boot-starter-aop:1.5.8.RELEASE'
-	compile('com.cloud:common:0.0.1-SNAPSHOT')
+	compile('com.cloud:common:0.0.2-SNAPSHOT')
 	compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
 	compile('org.sonatype.sisu.inject:cglib:3.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
