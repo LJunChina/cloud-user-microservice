@@ -14,6 +14,7 @@
         <result column="IS_ADMIN" jdbcType="VARCHAR" property="isAdmin" />
         <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
         <result column="LOGIN_TOKEN" jdbcType="VARCHAR" property="loginToken"/>
+        <result column="APP_ID" jdbcType="VARCHAR" property="appId"/>
     </resultMap>
     <resultMap id="PageResultMap" type="com.cloud.user.microservice.model.vo.UserPageVO">
         <id column="id" jdbcType="VARCHAR" property="id" />
@@ -28,7 +29,7 @@
         <result column="SYSTEM_CHN" jdbcType="VARCHAR" property="appChn"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ID,USER_NAME,PASSWORD,NAME,SEX,STATUS,ORG_ID,EMAIL,ID_CARD,IS_ADMIN,MOBILE,LOGIN_TOKEN
+        ID,USER_NAME,PASSWORD,NAME,SEX,STATUS,ORG_ID,EMAIL,ID_CARD,IS_ADMIN,MOBILE,LOGIN_TOKEN,APP_ID
     </sql>
     <select id="getUserInfo" parameterType="com.cloud.user.microservice.model.User" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" /> FROM user_info WHERE 1 = 1

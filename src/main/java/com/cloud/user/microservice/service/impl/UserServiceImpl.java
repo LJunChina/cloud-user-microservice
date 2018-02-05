@@ -126,7 +126,6 @@ public class UserServiceImpl implements UserService {
         }
         //初始化密码、状态信息
         user.setIsAdmin(YesOrNoEnum.NO.getCode());
-        user.setId(UUID.randomUUID().toString());
         user.setPassword(EncryptUtil.encryptSha512(INI_PASSWORD + user.getUserName()));
         int row = this.userDao.saveUser(user);
         if(row > 0){
