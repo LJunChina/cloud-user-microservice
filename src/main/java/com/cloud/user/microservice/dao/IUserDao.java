@@ -3,6 +3,7 @@ package com.cloud.user.microservice.dao;
 import com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO;
 import com.cloud.user.microservice.model.User;
 import com.cloud.user.microservice.model.vo.UserPageVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,4 +37,11 @@ public interface IUserDao {
      * @return
      */
     List<UserPageVO> getUserListByPage(UserSearchRespDTO request);
+
+    /**
+     * 根据用户id删除用户信息
+     * @param id
+     * @return
+     */
+    int deleteUserById(@Param(value = "id")String id);
 }

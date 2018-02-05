@@ -134,4 +134,40 @@ public class UserServiceImpl implements UserService {
         }
         return new BaseRespDTO(ResultCode.FAIL);
     }
+
+    /**
+     * 根据id删除用户信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseRespDTO deleteUserInfo(String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"id不能为空");
+        }
+        int effectRow = this.userDao.deleteUserById(id);
+        if(effectRow == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param user
+     * @return
+     */
+    @Override
+    public BaseRespDTO updateUserInfo(User user) {
+        if(EmptyChecker.isEmpty(user) || EmptyChecker.isEmpty(user.getId())){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
+        }
+        int effectRow = this.userDao.updateUserById(user);
+        if(effectRow == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
 }

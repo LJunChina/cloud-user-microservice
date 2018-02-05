@@ -48,4 +48,9 @@ public class UserDaoTest extends UserMicroserviceApplicationTests {
         Page<User> page = PageHelper.startPage(1,10).doSelectPage(() -> this.userDao.getUserListByPage(null));
         Assert.assertNotNull(page.getResult());
     }
+
+    @Test
+    public void testDeleteUserById(){
+        Assert.assertTrue(this.userDao.deleteUserById("342dc4fd-ddeb-42ad-87b8-a53ab1ab45ea") == 1);
+    }
 }

@@ -42,4 +42,18 @@ public interface UserService {
      * @return
      */
     BaseRespDTO saveUserInfo(User user);
+
+    /**
+     * 根据id删除用户信息
+     * @param id
+     * @return
+     */
+    BaseRespDTO deleteUserInfo(String id);
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    BaseRespDTO updateUserInfo(User user);
 }

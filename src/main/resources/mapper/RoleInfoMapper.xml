@@ -36,6 +36,7 @@
             <if test="describe != null and describe != ''">
                 ROLE_DESCRIBE,
             </if>
+            CREATE_AT
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id,jdbcType=VARCHAR},
@@ -51,6 +52,7 @@
             <if test="describe != null and describe != ''">
                 #{describe,jdbcType=VARCHAR},
             </if>
+            SYSDATE()
         </trim>
     </insert>
 

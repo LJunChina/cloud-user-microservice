@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -155,6 +156,47 @@ public class UserController {
             return respDTO.toString();
         }catch (Exception e){
             logger.error("exception occurred in userLogout :",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 删除用户信息
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete/{id}")
+    public String deleteUserInfo(@PathVariable(value = "id") String id){
+        logger.info("the params of deleteUserInfo is :{}",id);
+        try {
+            BaseRespDTO respDTO = this.userService.deleteUserInfo(id);
+            String result = respDTO.toString();
+            logger.info("this result of deleteUserInfo is : {}" ,result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in deleteUserInfo :",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 更新用户信息
+     * @param id
+     * @param body
+     * @return
+     */
+    @PostMapping("/update/{id}")
+    public String updateUserInfo(@PathVariable(value = "id") String id,@RequestBody String body){
+        logger.info("the params of updateUserInfo is :{},message:{}",id,body);
+        try {
+            User user = JSONObject.parseObject(body,User.class);
+            user.setId(id);
+            BaseRespDTO respDTO = this.userService.updateUserInfo(user);
+            String result = respDTO.toString();
+            logger.info("this result of updateUserInfo is : {}" ,result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in updateUserInfo :",e);
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }

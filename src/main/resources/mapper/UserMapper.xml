@@ -79,9 +79,10 @@
             <if test="appId != null">
                 APP_ID,
             </if>
+            CREATE_AT
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{id,jdbcType=VARCHAR},
+            UUID(),
             <if test="userName != null">
                 #{userName,jdbcType=VARCHAR},
             </if>
@@ -115,22 +116,25 @@
             <if test="appId != null">
                 #{appId,jdbcType=VARCHAR},
             </if>
+            SYSDATE()
         </trim>
     </insert>
     <update id="updateUserById" parameterType="com.cloud.user.microservice.model.User">
-        UPDATE user_info SET
-        USER_NAME = #{userName,jdbcType=VARCHAR},
-        PASSWORD = #{password,jdbcType=VARCHAR},
-        NAME = #{name,jdbcType=VARCHAR},
-        SEX = #{sex,jdbcType=VARCHAR},
-        STATUS = #{status,jdbcType=VARCHAR},
-        ORG_ID = #{orgId,jdbcType=VARCHAR},
-        email = #{email,jdbcType=VARCHAR},
-        ID_CARD = #{idCard,jdbcType=VARCHAR},
-        IS_ADMIN = #{isAdmin,jdbcType=VARCHAR},
-        MOBILE = #{mobile,jdbcType=VARCHAR},
-        LOGIN_TOKEN = #{loginToken,jdbcType=VARCHAR},
-        APP_ID = #{appId,jdbcType=VARCHAR}
+        UPDATE user_info
+          SET
+            USER_NAME = #{userName,jdbcType=VARCHAR},
+            PASSWORD = #{password,jdbcType=VARCHAR},
+            NAME = #{name,jdbcType=VARCHAR},
+            SEX = #{sex,jdbcType=VARCHAR},
+            STATUS = #{status,jdbcType=VARCHAR},
+            ORG_ID = #{orgId,jdbcType=VARCHAR},
+            EMAIL = #{email,jdbcType=VARCHAR},
+            ID_CARD = #{idCard,jdbcType=VARCHAR},
+            IS_ADMIN = #{isAdmin,jdbcType=VARCHAR},
+            MOBILE = #{mobile,jdbcType=VARCHAR},
+            LOGIN_TOKEN = #{loginToken,jdbcType=VARCHAR},
+            APP_ID = #{appId,jdbcType=VARCHAR},
+            UPDATE_AT = SYSDATE()
         WHERE id = #{id,jdbcType=VARCHAR}
     </update>
     <select id="getUserListByPage" parameterType="com.cloud.user.microservice.dto.responseDTO.UserSearchRespDTO" resultMap="PageResultMap">
@@ -143,4 +147,9 @@
             AND U.NAME = #{name,jdbcType=VARCHAR}
         </if>
     </select>
+
+    <!--删除用户信息-->
+    <delete id="deleteUserById">
+        DELETE FROM user_info WHERE ID = #{id,jdbcType=VARCHAR}
+    </delete>
 </mapper>
