@@ -16,9 +16,6 @@ import com.cloud.user.microservice.service.TokenService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.cloud.user.microservice.service.UserService;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +23,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.interfaces.RSAPrivateKey;
 import java.util.Base64;
-import java.util.UUID;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
-
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private static final String INI_PASSWORD = "123456";
 
