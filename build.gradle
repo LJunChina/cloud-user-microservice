@@ -10,10 +10,15 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+	dependencies {
+		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
+	}
+
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: "org.sonarqube"
 apply plugin: 'org.springframework.boot'
 
 group = 'com.cloud'
@@ -43,6 +48,12 @@ dependencies {
 	compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3')
 	compile('org.sonatype.sisu.inject:cglib:3.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+sonarqube{
+    properties{
+        property "sonar.projectName","user-service"
+        property "sonar.sources","src\\main\\java"
+    }
 }
 
 dependencyManagement {
