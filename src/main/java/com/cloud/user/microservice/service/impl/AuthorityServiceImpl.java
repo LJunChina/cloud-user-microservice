@@ -234,4 +234,23 @@ public class AuthorityServiceImpl implements AuthorityService {
         }
         return new BaseRespDTO(ResultCode.FAIL);
     }
+
+    /**
+     * 根據id查询菜单/权限信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseRespDTO getAuthorityById(String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"id不能为空");
+        }
+        AuthorityReqDTO request = new AuthorityReqDTO();
+        request.setId(id);
+        Authority authority = this.authorityDao.getAuthorityInfo(request);
+        BaseRespDTO baseRespDTO = new BaseRespDTO();
+        baseRespDTO.setData(authority);
+        return baseRespDTO;
+    }
 }

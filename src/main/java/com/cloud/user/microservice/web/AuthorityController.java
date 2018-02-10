@@ -198,4 +198,23 @@ public class AuthorityController {
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }
+
+    /**
+     * 菜单/权限详情查询api
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/{id}")
+    public String getAuthorityInfo(@PathVariable(value = "id") String id){
+        logger.info("param of getAuthorityInfo,id:{",id);
+        try {
+            BaseRespDTO respDTO = this.authorityService.getAuthorityById(id);
+            String result = respDTO.toString();
+            logger.info("result of getAuthorityInfo:{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in getAuthorityInfo",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
 }

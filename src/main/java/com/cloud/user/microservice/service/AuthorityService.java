@@ -65,4 +65,11 @@ public interface AuthorityService {
      * @return
      */
     BaseRespDTO updateAuthority(Authority authority);
+
+    /**
+     * 根據id查询菜单/权限信息
+     * @param id
+     * @return
+     */
+    BaseRespDTO getAuthorityById(String id);
 }
