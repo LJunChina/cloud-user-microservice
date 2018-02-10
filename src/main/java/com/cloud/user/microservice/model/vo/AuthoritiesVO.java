@@ -28,6 +28,16 @@ public class AuthoritiesVO implements Serializable {
      */
     private String selected;
 
+    private String appId;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public String getSelected() {
         return selected;
     }

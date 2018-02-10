@@ -228,7 +228,38 @@ public class AuthorityServiceImpl implements AuthorityService {
         if(EmptyChecker.isEmpty(authority) || EmptyChecker.isEmpty(authority.getId())){
             return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
         }
-        int effectRow = this.authorityDao.updateAuthority(authority);
+        Authority newAuthority = this.authorityDao.getAuthoritiesById(authority.getId());
+        if(EmptyChecker.notEmpty(authority.getName())){
+            newAuthority.setName(authority.getName());
+        }
+        if(EmptyChecker.notEmpty(authority.getAppName())){
+            newAuthority.setAppName(authority.getAppName());
+        }
+        if(EmptyChecker.notEmpty(authority.getAvailable())){
+            newAuthority.setAvailable(authority.getAvailable());
+        }
+        if(EmptyChecker.notEmpty(authority.getIcon())){
+            newAuthority.setIcon(authority.getIcon());
+        }
+        if(EmptyChecker.notEmpty(authority.getItemType())){
+            newAuthority.setItemType(authority.getItemType());
+        }
+        if(EmptyChecker.notEmpty(authority.getItemUri())){
+            newAuthority.setItemUri(authority.getItemUri());
+        }
+        if(EmptyChecker.notEmpty(authority.getStyle())){
+            newAuthority.setStyle(authority.getStyle());
+        }
+        if(EmptyChecker.notEmpty(authority.getParentId())){
+            newAuthority.setParentId(authority.getParentId());
+        }
+        if(EmptyChecker.notEmpty(authority.getDeep())){
+            newAuthority.setDeep(authority.getDeep());
+        }
+        if(EmptyChecker.notEmpty(authority.getSortNum())){
+            newAuthority.setSortNum(authority.getSortNum());
+        }
+        int effectRow = this.authorityDao.updateAuthority(newAuthority);
         if(effectRow == 1){
             return new BaseRespDTO();
         }

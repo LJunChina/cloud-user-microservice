@@ -22,6 +22,7 @@
         <result column="SYSTEM_CHN" jdbcType="VARCHAR" property="appName"/>
         <result column="ITEM_TYPE" jdbcType="VARCHAR" property="itemType"/>
         <result column="ITEM_URI" jdbcType="VARCHAR" property="itemUri"/>
+        <result column="APP_NAME" jdbcType="VARCHAR" property="appId"/>
     </resultMap>
     <sql id="Base_Column_List">
         ID,NAME,PARENT_ID,SORT_NUMBER,STYLE,ICON,AVAILABLE,APP_NAME,DEEP,ITEM_TYPE,ITEM_URI
@@ -120,7 +121,7 @@
 
     <select id="getAllAuthorityInfo" parameterType="com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO" resultMap="PageResultMap">
         SELECT
-	      A.ID,A.`NAME`,A.ICON,A.ITEM_URI,B.`NAME` AS PARENT_NAME,S.SYSTEM_CHN
+	      A.ID,A.`NAME`,A.ICON,A.ITEM_URI,B.`NAME` AS PARENT_NAME,S.SYSTEM_CHN,B.APP_NAME
         FROM
 	      authority A
         INNER JOIN authority B ON A.PARENT_ID = B.ID
@@ -184,6 +185,7 @@
         PARENT_ID = #{parentId,jdbcType=VARCHAR},
         STYLE = #{style,jdbcType=VARCHAR},
         ITEM_URI = #{itemUri,jdbcType=VARCHAR},
+        APP_NAME = #{appName,jdbcType=VARCHAR},
         UPDATE_AT = SYSDATE()
         WHERE ID = #{id,jdbcType=VARCHAR}
     </update>
