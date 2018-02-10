@@ -197,4 +197,41 @@ public class AuthorityServiceImpl implements AuthorityService {
         }
         return new BaseRespDTO();
     }
+
+    /**
+     * 根据id删除权限/菜单信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseRespDTO deleteAuthorityById(String id) {
+        if(EmptyChecker.isEmpty(id)){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND.getCode(),"id不能为空");
+        }
+        int effectRow = this.authorityDao.deleteAuthorityById(id);
+        if(effectRow == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
+
+
+    /**
+     * 更新权限/菜单信息
+     *
+     * @param authority
+     * @return
+     */
+    @Override
+    public BaseRespDTO updateAuthority(Authority authority) {
+        if(EmptyChecker.isEmpty(authority) || EmptyChecker.isEmpty(authority.getId())){
+            return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND);
+        }
+        int effectRow = this.authorityDao.updateAuthority(authority);
+        if(effectRow == 1){
+            return new BaseRespDTO();
+        }
+        return new BaseRespDTO(ResultCode.FAIL);
+    }
 }

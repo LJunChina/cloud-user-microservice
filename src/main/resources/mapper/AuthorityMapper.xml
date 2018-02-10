@@ -184,11 +184,16 @@
         PARENT_ID = #{parentId,jdbcType=VARCHAR},
         STYLE = #{style,jdbcType=VARCHAR},
         ITEM_URI = #{itemUri,jdbcType=VARCHAR},
-        CREATE_AT = SYSDATE()
+        UPDATE_AT = SYSDATE()
         WHERE ID = #{id,jdbcType=VARCHAR}
     </update>
     <!--根据id查询权限信息-->
     <select id="getAuthoritiesById" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List"/> FROM authority WHERE ID = #{id,jdbcType=VARCHAR}
     </select>
+
+    <!--根据id删除权限/菜单信息-->
+    <delete id="deleteAuthorityById">
+        DELETE FROM authority WHERE ID = #{id,jdbcType=VARCHAR}
+    </delete>
 </mapper>

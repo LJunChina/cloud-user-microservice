@@ -3,6 +3,7 @@ package com.cloud.user.microservice.service;
 import com.cloud.common.dto.BaseRespDTO;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
+import com.cloud.user.microservice.model.Authority;
 
 
 /**
@@ -50,4 +51,18 @@ public interface AuthorityService {
      * @return
      */
     BaseRespDTO checkUserPrivileges(String userId,String appId,String uri);
+
+    /**
+     * 根据id删除权限/菜单信息
+     * @param id
+     * @return
+     */
+    BaseRespDTO deleteAuthorityById(String id);
+
+    /**
+     * 更新权限/菜单信息
+     * @param authority
+     * @return
+     */
+    BaseRespDTO updateAuthority(Authority authority);
 }

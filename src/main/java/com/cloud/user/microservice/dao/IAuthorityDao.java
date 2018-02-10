@@ -76,4 +76,11 @@ public interface IAuthorityDao {
     int updateAuthority(Authority authority);
 
     Authority getAuthoritiesById(@Param(value = "id") String id);
+
+    /**
+     * 根据id删除权限/菜单信息
+     * @param id
+     * @return
+     */
+    int deleteAuthorityById(@Param(value = "id")String id);
 }

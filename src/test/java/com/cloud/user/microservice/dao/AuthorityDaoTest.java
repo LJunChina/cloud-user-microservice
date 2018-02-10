@@ -99,4 +99,9 @@ public class AuthorityDaoTest extends UserMicroserviceApplicationTests {
     public void testGetAuthoritiesById(){
         Assert.assertNotNull(this.authorityDao.getAuthoritiesById("7a57e08b-ecf1-4906-8e73-dfd26faa66cf"));
     }
+
+    @Test
+    public void testDeleteAuthorityById(){
+        Assert.assertTrue(1 == this.authorityDao.deleteAuthorityById("f8179337-6f09-4fed-b79a-337fcb1dce4f"));
+    }
 }

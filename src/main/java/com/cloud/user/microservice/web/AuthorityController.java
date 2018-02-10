@@ -6,6 +6,7 @@ import com.cloud.common.enums.ResultCode;
 import com.cloud.common.util.EmptyChecker;
 import com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO;
 import com.cloud.user.microservice.dto.responseDTO.MenuRespDTO;
+import com.cloud.user.microservice.model.Authority;
 import com.cloud.user.microservice.service.AuthorityService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -152,6 +153,48 @@ public class AuthorityController {
             return result;
         }catch (Exception e){
             logger.error("exception occurred in checkUserPrivileges",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+    /**
+     * 根据id删除菜单/权限信息
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/delete/{id}")
+    public String deleteAuthorityById(@PathVariable(value = "id") String id){
+        logger.info("param of deleteAuthorityById,id:{}",id);
+        try {
+            BaseRespDTO respDTO = this.authorityService.deleteAuthorityById(id);
+            String result = respDTO.toString();
+            logger.info("result of deleteAuthorityById:{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in deleteAuthorityById",e);
+            return new BaseRespDTO(ResultCode.ERROR).toString();
+        }
+    }
+
+
+    /**
+     * 更新菜单/权限信息
+     * @param id
+     * @param body
+     * @return
+     */
+    @PostMapping(value = "/update/{id}")
+    public String updateAuthority(@PathVariable(value = "id") String id,@RequestBody String body){
+        logger.info("param of deleteAuthorityById,id:{},body:{}",id,body);
+        try {
+            Authority authority = JSONObject.parseObject(body,Authority.class);
+            authority.setId(id);
+            BaseRespDTO respDTO = this.authorityService.updateAuthority(authority);
+            String result = respDTO.toString();
+            logger.info("result of updateAuthority:{}",result);
+            return result;
+        }catch (Exception e){
+            logger.error("exception occurred in updateAuthority",e);
             return new BaseRespDTO(ResultCode.ERROR).toString();
         }
     }
