@@ -90,9 +90,10 @@ public class AuthorityController {
                                           @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize,
                                           @RequestParam(value = "appName",defaultValue = StringUtils.EMPTY)String appName,
                                           @RequestParam(value = "itemType",defaultValue = StringUtils.EMPTY)String itemType,
-                                          @RequestParam(value = "roleId",defaultValue = StringUtils.EMPTY) String roleId){
-        logger.info("the params of getAllAuthoritiesByPage,name:{},pageIndex:{},pageSize:{},appName:{},itemType:{},roleId:{}"
-                ,name,pageIndex,pageSize,appName,itemType,roleId);
+                                          @RequestParam(value = "roleId",defaultValue = StringUtils.EMPTY) String roleId,
+                                          @RequestParam(value = "appId",defaultValue = StringUtils.EMPTY) String appId){
+        logger.info("the params of getAllAuthoritiesByPage,name:{},pageIndex:{},pageSize:{},appName:{},itemType:{},roleId:{},appId:{}"
+                ,name,pageIndex,pageSize,appName,itemType,roleId,appId);
         if(EmptyChecker.isEmpty(itemType)){
             return new BaseRespDTO(ResultCode.PARAMS_NOT_FOUND).toString();
         }
@@ -104,6 +105,7 @@ public class AuthorityController {
             request.setItemType(itemType);
             request.setName(name);
             request.setRoleId(roleId);
+            request.setAppId(appId);
             BaseRespDTO respDTO = this.authorityService.getAllAuthoritiesByPage(request);
             String result = respDTO.toString();
             logger.info("result of the getAllAuthoritiesByPage is :{}",result);

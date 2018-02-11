@@ -23,6 +23,7 @@
         <result column="ITEM_TYPE" jdbcType="VARCHAR" property="itemType"/>
         <result column="ITEM_URI" jdbcType="VARCHAR" property="itemUri"/>
         <result column="APP_NAME" jdbcType="VARCHAR" property="appId"/>
+        <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId"/>
     </resultMap>
     <sql id="Base_Column_List">
         ID,NAME,PARENT_ID,SORT_NUMBER,STYLE,ICON,AVAILABLE,APP_NAME,DEEP,ITEM_TYPE,ITEM_URI
@@ -121,7 +122,7 @@
 
     <select id="getAllAuthorityInfo" parameterType="com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO" resultMap="PageResultMap">
         SELECT
-	      A.ID,A.`NAME`,A.ICON,A.ITEM_URI,B.`NAME` AS PARENT_NAME,S.SYSTEM_CHN,B.APP_NAME
+	      A.ID,A.`NAME`,A.ICON,A.ITEM_URI,B.`NAME` AS PARENT_NAME,S.SYSTEM_CHN,A.APP_NAME,A.PARENT_ID
         FROM
 	      authority A
         INNER JOIN authority B ON A.PARENT_ID = B.ID
@@ -133,6 +134,9 @@
         </if>
         <if test="itemType != null and itemType != ''">
             AND A.ITEM_TYPE = #{itemType,jdbcType=VARCHAR}
+        </if>
+        <if test="appId != null and appId != ''">
+            AND A.APP_NAME = #{appId,jdbcType=VARCHAR}
         </if>
     </select>
     <select id="getAuthorityInfo" resultMap="BaseResultMap" parameterType="com.cloud.user.microservice.dto.requestDTO.AuthorityReqDTO">

@@ -42,6 +42,16 @@ public class AuthorityReqDTO implements Serializable {
 
     private String roleId;
 
+    private String appId;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public String getRoleId() {
         return roleId;
     }

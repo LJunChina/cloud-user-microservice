@@ -30,6 +30,16 @@ public class AuthoritiesVO implements Serializable {
 
     private String appId;
 
+    private String parentId;
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
     public String getAppId() {
         return appId;
     }
