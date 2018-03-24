@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: user-microservice
+  cloud:
+    config:
+      uri: http://115.159.152.121:8040
+      label: master
+      profile: dev
