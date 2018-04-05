@@ -3,6 +3,9 @@ spring:
     name: user-microservice
   cloud:
     config:
-      uri: http://115.159.152.121:8040
+      uri: http://localhost:8040
       label: master
       profile: dev
+    consul:
+      host: 115.159.152.121
+      port: 8500
