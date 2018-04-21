@@ -1,5 +1,6 @@
 package com.cloud.user.microservice.utils;
 
+import com.cloud.user.microservice.enums.RoleEnum;
 import org.junit.Test;
 
 import java.net.URLEncoder;
@@ -24,6 +25,10 @@ public class SSOUtilTest {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    @Test
+    public void testEnum(){
+        System.out.println(RoleEnum.ASSESSOR);
     }
 }
